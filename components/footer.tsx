@@ -1,0 +1,120 @@
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import EmailIcon from "@mui/icons-material/Email";
+import { socialLinks } from "@/lib/social-links";
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="border-t border-border bg-background/50 backdrop-blur-md mb-24 sm:mb-0 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12 animate-fade-in text-center md:text-left">
+          {/* Brand */}
+          <div className="flex flex-col items-center md:items-start space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+                Ahmed Basuony
+              </h3>
+              <p className="text-sm text-muted-foreground max-w-xs mx-auto md:mx-0 leading-relaxed">
+                MERN Stack Developer crafting beautiful, responsive, and
+                user-centric digital experiences.
+              </p>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="flex flex-col items-center md:items-start">
+            <h4 className="text-sm font-semibold text-foreground mb-6 uppercase tracking-wider">
+              Quick Links
+            </h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li>
+                <a
+                  href="#About Me"
+                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                >
+                  About Me
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#skills"
+                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                >
+                  Skills
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#projects"
+                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                >
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#certificates"
+                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                >
+                  Certificates
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex flex-col items-center md:items-start">
+            <h4 className="text-sm font-semibold text-foreground mb-6 uppercase tracking-wider">
+              Connect
+            </h4>
+            <div className="flex gap-4">
+              {socialLinks
+                .filter((link) => link.name !== "WhatsApp") // Matches Hero behavior
+                .map((social, index) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group p-3 rounded-xl ${social.bgClass} transition-all duration-300 hover:scale-110 hover:shadow-lg text-xl flex items-center justify-center`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                    aria-label={social.label}
+                  >
+                    <span className={`relative z-20 ${social.textClass}`}>
+                      {social.icon}
+                    </span>
+                  </a>
+                ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        {/* <div className="h-px bg-linear-to-r from-transparent via-border to-transparent my-8" /> */}
+
+        {/* Copyright */}
+        {/* <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground animate-fade-in text-center md:text-left">
+          <p>© {currentYear} Ahmed Basuony. All rights reserved.</p>
+          <div className="flex flex-wrap justify-center gap-6">
+            <a href="#" className="hover:text-accent transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-accent transition-colors">
+              Terms of Service
+            </a>
+          </div>
+        </div> */}
+      </div>
+    </footer>
+  );
+}
