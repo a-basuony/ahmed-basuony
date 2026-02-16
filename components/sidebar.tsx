@@ -36,7 +36,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border p-6 flex-col z-40 overflow-auto animate-fade-in transition-all duration-300 ${
+      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border p-6 flex-col z-40 overflow-hidden animate-fade-in transition-all duration-300 ${
         isExpanded ? "w-72" : "w-20"
       }`}
     >
@@ -51,7 +51,7 @@ export default function Sidebar() {
 
       {/* Developer Info */}
       <div
-        className={`text-center mb-8 animate-fade-in ${!isExpanded && "mt-12"}`}
+        className={`text-center mb-6 animate-fade-in ${!isExpanded && "mt-12"}`}
       >
         <div className={`mb-4 flex justify-center ${!isExpanded && "mb-0"}`}>
           <div
@@ -93,7 +93,7 @@ export default function Sidebar() {
       {/* Theme Toggle */}
       {isExpanded ? (
         <div
-          className="mb-8 flex items-center justify-center gap-3 p-3 rounded-lg bg-sidebar-primary/10 border border-sidebar-primary/20 animate-fade-in cursor-pointer hover:bg-sidebar-primary/20 transition-colors"
+          className="mb-6 flex items-center justify-center gap-3 p-3 rounded-lg bg-sidebar-primary/10 border border-sidebar-primary/20 animate-fade-in cursor-pointer hover:bg-sidebar-primary/20 transition-colors"
           onClick={toggleTheme}
           style={{ animationDelay: "0.1s" }}
         >
@@ -129,7 +129,7 @@ export default function Sidebar() {
       ) : (
         <button
           onClick={toggleTheme}
-          className={`mb-8 p-2.5 cursor-pointer transition-all duration-300 flex items-center justify-center rounded-lg ${
+          className={`mb-6 p-2.5 cursor-pointer transition-all duration-300 flex items-center justify-center rounded-lg ${
             theme === "dark"
               ? "hover:bg-green-500/20 text-green-400"
               : "hover:bg-yellow-500/20 text-yellow-600"
@@ -145,7 +145,7 @@ export default function Sidebar() {
       )}
 
       {/* Navigation */}
-      <nav className="flex-1 mb-8">
+      <nav className="flex-1 mb-6">
         {isExpanded && (
           <p className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-4">
             Navigation

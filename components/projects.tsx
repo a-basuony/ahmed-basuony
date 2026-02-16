@@ -13,6 +13,7 @@ export default function Projects() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [loading, setLoading] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   // const MERN_PROJECTS: ProjectData[] = [
   //   {
@@ -376,6 +377,19 @@ export default function Projects() {
       </div>
     );
   }
+  const handleShowMore = () => {
+    setVisibleCount((prev) => prev + 6);
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount(6);
+    // Optional: scroll back to top of projects section or just keep position
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="projects"
@@ -476,7 +490,7 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           <AnimatePresence>
-            {projects.map((project, index) => (
+            {projects.slice(0, visibleCount).map((project, index) => (
               <motion.div
                 key={project.id}
                 className="group relative h-full flex flex-col"
@@ -568,34 +582,54 @@ export default function Projects() {
           </AnimatePresence>
         </div>
 
-        {projects.length > 0 && (
-          <motion.div
-            className="text-center mt-16 md:mt-20"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <div className="inline-flex flex-col items-center gap-4">
-              <p className="text-muted-foreground">Want to see more?</p>
-              <a
-                href="https://github.com/a-basuony"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative overflow-hidden px-8 py-3 rounded-full bg-card border border-border hover:border-primary/50 transition-colors duration-300"
+        {/* Show More / Show Less & GitHub Buttons */}
+        <motion.div
+          className="flex flex-col items-center gap-6 mt-16 md:mt-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          {visibleCount < projects.length ? (
+            <button
+              onClick={handleShowMore}
+              className="px-8 py-3 rounded-full bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-all duration-300 flex items-center gap-2 group cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
+            >
+              <span>Show More</span>
+              <AutoAwesomeIcon className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+            </button>
+          ) : (
+            projects.length > 6 && (
+              <button
+                onClick={handleShowLess}
+                className="px-8 py-3 rounded-full bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/80 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg"
               >
-                <span className="relative flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
-                  <GitHubIcon />
-                  View All Projects on GitHub
-                  <LaunchIcon
-                    className="transform group-hover:translate-x-1 transition-transform duration-300"
-                    sx={{ fontSize: 18 }}
-                  />
-                </span>
-              </a>
-            </div>
-          </motion.div>
-        )}
+                Show Less
+              </button>
+            )
+          )}
+
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-muted-foreground text-sm">
+              Want to see everything?
+            </p>
+            <a
+              href="https://github.com/a-basuony"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative overflow-hidden px-8 py-3 rounded-full bg-card border border-border hover:border-primary/50 transition-colors duration-300"
+            >
+              <span className="relative flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
+                <GitHubIcon />
+                View All Projects on GitHub
+                <LaunchIcon
+                  className="transform group-hover:translate-x-1 transition-transform duration-300"
+                  sx={{ fontSize: 18 }}
+                />
+              </span>
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
