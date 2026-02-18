@@ -165,7 +165,7 @@ export default function Contact() {
               >
                 <div className="flex items-start gap-4">
                   <div
-                    className={`w-7 h-7 rounded-full ${info.bg} relative z-10 flex items-center justify-center shrink-0 hover:rotate-10 hover:scale-110 transition-transform duration-300 text-lg`}
+                    className={`w-11 h-11 rounded-full ${info.bg} relative z-10 flex items-center justify-center shrink-0 hover:rotate-10 hover:scale-110 transition-transform duration-300 text-lg`}
                   >
                     {info.icon}
                   </div>

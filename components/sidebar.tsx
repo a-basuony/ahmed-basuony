@@ -74,12 +74,12 @@ export default function Sidebar() {
         </div>
         {isExpanded && (
           <>
-            <h1
+            <h2
               className="text-2xl font-bold text-sidebar-foreground mb-2"
               style={{ fontFamily: '"Saira Stencil One", sans-serif' }}
             >
               Ahmed Basuony
-            </h1>
+            </h2>
             <p className="text-lg text-sidebar-foreground/80">
               Full-Stack Developer
             </p>
@@ -95,6 +95,17 @@ export default function Sidebar() {
         <div
           className="mb-6 flex items-center justify-center gap-3 p-3 rounded-lg bg-sidebar-primary/10 border border-sidebar-primary/20 animate-fade-in cursor-pointer hover:bg-sidebar-primary/20 transition-colors"
           onClick={toggleTheme}
+          role="button"
+          tabIndex={0}
+          aria-label={
+            theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
+          }
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              toggleTheme();
+            }
+          }}
           style={{ animationDelay: "0.1s" }}
         >
           <div
@@ -205,6 +216,7 @@ export default function Sidebar() {
                   opacity: theme === "dark" ? 1 : 0.85,
                   animationDelay: `${0.6 + index * 0.1}s`,
                 }}
+                aria-label={social.label}
                 title={social.label}
               >
                 {social.icon}

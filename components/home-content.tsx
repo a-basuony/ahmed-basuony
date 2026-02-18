@@ -1,17 +1,16 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import ClientShell from "@/components/client-shell";
+import Sidebar from "@/components/sidebar";
+import Hero from "@/components/hero";
 
-// Dynamic imports with ssr: false for all components to match original "client-only" behavior
-// but with the benefit of code-splitting (separate chunks)
-const Sidebar = dynamic(() => import("@/components/sidebar"), { ssr: false });
-const Hero = dynamic(() => import("@/components/hero"), { ssr: false });
+// Above-the-fold: direct imports for SSR (Hero, Sidebar)
+// Below-the-fold: dynamic imports for code-splitting
 const BottomNavbar = dynamic(() => import("@/components/Navbar"), {
   ssr: false,
 });
-const Skills = dynamic(() => import("@/components/skills"), { ssr: false });
-const Projects = dynamic(() => import("@/components/projects"), { ssr: false });
+const Skills = dynamic(() => import("@/components/skills"));
+const Projects = dynamic(() => import("@/components/projects"));
 const Certificates = dynamic(() => import("@/components/certificates"), {
   ssr: false,
 });
@@ -25,24 +24,22 @@ const GoTop = dynamic(() => import("@/components/go-top"), { ssr: false });
 
 export default function HomeContent() {
   return (
-    <ClientShell>
-      <div className="flex flex-row min-h-screen bg-background">
-        <Sidebar />
-        <main className="flex-1 relative w-full overflow-x-hidden">
-          <div className="w-full">
-            <BottomNavbar />
-            <Hero />
-            <Skills />
-            <Projects />
-            <Certificates />
-            <Testimonials />
-            <Contact />
-            <Footer />
-          </div>
-          <GoTop />
-          <ChatBot />
-        </main>
+    <div className="flex flex-row min-h-screen bg-background">
+      <Sidebar />
+      <div className="flex-1 relative w-full overflow-x-hidden">
+        <div className="w-full">
+          <BottomNavbar />
+          <Hero />
+          <Skills />
+          <Projects />
+          <Certificates />
+          <Testimonials />
+          <Contact />
+          <Footer />
+        </div>
+        <GoTop />
+        <ChatBot />
       </div>
-    </ClientShell>
+    </div>
   );
 }

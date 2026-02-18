@@ -15,19 +15,28 @@ export default function HeroSection() {
     navigator.hardwareConcurrency &&
     navigator.hardwareConcurrency <= 4;
 
-  // Pre-compute particle positions once
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 50 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 1000,
-        y: Math.random() * 1000,
-        scale: Math.random() * 1.5,
-        targetY: Math.random() * 1000,
-        duration: Math.random() * 5 + 5,
-      })),
-    [],
-  );
+  // Deterministic seeded PRNG to avoid server/client hydration mismatch
+  const particles = useMemo(() => {
+    // mulberry32: deterministic 32-bit PRNG
+    const seed = (s: number) => {
+      return () => {
+        s |= 0;
+        s = (s + 0x6d2b79f5) | 0;
+        let t = Math.imul(s ^ (s >>> 15), 1 | s);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    };
+    const rand = seed(42);
+    return Array.from({ length: 50 }, (_, i) => ({
+      id: i,
+      x: rand() * 1000,
+      y: rand() * 1000,
+      scale: rand() * 1.5,
+      targetY: rand() * 1000,
+      duration: rand() * 5 + 5,
+    }));
+  }, []);
 
   // Throttle mousemove with RAF to avoid excessive re-renders
   const rafRef = useRef<number>(0);
@@ -90,6 +99,7 @@ export default function HeroSection() {
             fill
             className="object-cover object-[100%_0%]"
             priority
+            sizes="(max-width: 1024px) 100vw, 55vw"
           />
           {/* Gradient overlay for smooth blending with background */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-transparent to-transparent dark:from-slate-950 dark:via-transparent dark:to-transparent" />
@@ -226,6 +236,7 @@ export default function HeroSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={social.name}
                     whileHover={{ scale: 1.2, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
                     className="w-12 h-12 bg-slate-200 dark:bg-slate-800 backdrop-blur-sm border border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 dark:hover:bg-purple-500/30 dark:hover:border-purple-500/50 transition-all group"
@@ -353,9 +364,9 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator — hidden on mobile to avoid overlapping social links */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden sm:block"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.5 }}
