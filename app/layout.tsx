@@ -7,7 +7,7 @@ import "./globals.css";
 
 // TODO: After deploying custom domain, update this to https://ahmedbasuony.com
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://ahmed-website.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://ahmed-basuony.vercel.app/";
 
 // Font optimization with display swap for maximum performance
 const geist = Geist({
