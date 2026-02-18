@@ -200,19 +200,15 @@
   }
 }
 
-/* Gaming-inspired animations and glow effects */
+/* GPU-composited glow: static shadow + animated opacity */
 @keyframes glow {
   0%,
   100% {
-    box-shadow:
-      0 0 5px rgba(114, 88, 188, 0.5),
-      inset 0 0 5px rgba(114, 88, 188, 0.1);
+    opacity: 0.5;
   }
 
   50% {
-    box-shadow:
-      0 0 20px rgba(114, 88, 188, 0.8),
-      inset 0 0 10px rgba(114, 88, 188, 0.2);
+    opacity: 0.85;
   }
 }
 
@@ -241,6 +237,9 @@
 
 .glow-effect {
   animation: glow 3s ease-in-out infinite;
+  box-shadow:
+    0 0 20px rgba(114, 88, 188, 0.8),
+    inset 0 0 10px rgba(114, 88, 188, 0.2);
 }
 
 .float-animation {
@@ -304,7 +303,9 @@
 }
 
 .animate-gradient {
-  animation: gradient 3s ease infinite;
+  animation: gradient 6s ease infinite;
+  will-change: background-position;
+  backface-visibility: hidden;
 }
 
 /* Smooth scrolling */

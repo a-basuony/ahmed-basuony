@@ -109,13 +109,8 @@ export default function HeroSection() {
 
       <div className="container mx-auto px-6 z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
-          >
+          {/* Left Content — no motion wrapper to ensure LCP text is visible on first paint */}
+          <div className="space-y-8">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -128,14 +123,9 @@ export default function HeroSection() {
               </span>
             </motion.div>
 
-            {/* Main Heading */}
+            {/* Main Heading — static render for instant LCP */}
             <div className="space-y-4">
-              <motion.h1
-                className="text-6xl lg:text-7xl font-bold text-slate-900 dark:text-slate-50 leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
+              <h1 className="text-6xl lg:text-7xl font-bold text-slate-900 dark:text-slate-50 leading-tight">
                 Hi, I'm{" "}
                 <span
                   className="bg-linear-to-r from-purple-600 via-pink-600 to-purple-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient"
@@ -143,16 +133,11 @@ export default function HeroSection() {
                 >
                   Ahmed Basuony
                 </span>
-              </motion.h1>
+              </h1>
 
-              <motion.h2
-                className="text-3xl lg:text-4xl font-semibold text-purple-700 dark:text-purple-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
+              <h2 className="text-3xl lg:text-4xl font-semibold text-purple-700 dark:text-purple-300">
                 Full-Stack Developer <br></br> (MERN Stack)
-              </motion.h2>
+              </h2>
             </div>
 
             {/* Description */}
@@ -252,7 +237,7 @@ export default function HeroSection() {
                   </motion.a>
                 ))}
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* Right Content - 3D Computer */}
           {/* Floating Skills (Clean & Professional) */}

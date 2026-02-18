@@ -453,14 +453,6 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
