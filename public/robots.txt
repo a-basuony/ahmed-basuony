@@ -1,6 +1,6 @@
 # ===========================
-# Robots.txt for https://ahmed-website.vercel.app
-# Author: Ahmed Basuony (Front-End Developer)
+# Robots.txt for https://ahmed-basuony.vercel.app
+# Author: Ahmed Basuony (MERN Stack Developer)
 # Purpose: Full SEO optimization for portfolio visibility
 # ===========================
 
@@ -20,9 +20,8 @@ Disallow: /*?*
 # Crawl-delay for better server performance
 Crawl-delay: 2
 
-# Sitemap reference
-Sitemap: https://ahmed-website.vercel.app/sitemap.xml
-
+# Sitemap reference - UPDATED DOMAIN
+Sitemap: https://ahmed-basuony.vercel.app/sitemap.xml
 
 # ===========================
 # Additional Instructions

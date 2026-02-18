@@ -7,7 +7,7 @@ import "./globals.css";
 
 // TODO: After deploying custom domain, update this to https://ahmedbasuony.com
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://ahmed-basuony.vercel.app/";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://ahmed-basuony.vercel.app";
 
 // Font optimization with display swap for maximum performance
 const geist = Geist({
@@ -195,6 +195,11 @@ export const metadata: Metadata = {
       { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      {
+        url: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
     ],
     shortcut: "/favicon.svg",
     apple: [
