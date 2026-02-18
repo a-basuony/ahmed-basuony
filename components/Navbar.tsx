@@ -104,7 +104,7 @@ export default function BottomNavbar() {
                 key={index}
                 onClick={() => handleClick(item, index)}
                 aria-label={item.label}
-                className="relative flex flex-col items-center gap-1 p-1 flex-1 min-w-0"
+                className="relative flex flex-col items-center justify-center gap-1 p-1 flex-1 min-w-0 min-h-[44px]"
                 whileTap={{ scale: 0.92 }}
                 transition={{ duration: 0.15 }}
               >

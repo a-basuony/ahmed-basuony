@@ -1,11 +1,16 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Sidebar from "@/components/sidebar";
 import Hero from "@/components/hero";
 
-// Above-the-fold: direct imports for SSR (Hero, Sidebar)
+// Above-the-fold: direct imports for SSR (Hero)
 // Below-the-fold: dynamic imports for code-splitting
+const Sidebar = dynamic(() => import("@/components/sidebar"), {
+  ssr: false,
+  loading: () => (
+    <aside className="hidden sm:flex sticky left-0 top-0 h-screen w-72 bg-sidebar border-r border-sidebar-border p-6 flex-col z-40 animate-pulse" />
+  ),
+});
 const BottomNavbar = dynamic(() => import("@/components/Navbar"), {
   ssr: false,
 });

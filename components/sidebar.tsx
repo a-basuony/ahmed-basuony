@@ -43,7 +43,7 @@ export default function Sidebar() {
       {/* Toggle Button */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="absolute cursor-pointer top-4 right-4 p-2 rounded-lg hover:bg-sidebar-primary/20 transition-colors z-10"
+        className="absolute cursor-pointer top-4 right-4 p-2 rounded-lg hover:bg-sidebar-primary/20 transition-colors z-10 min-h-[44px] min-w-[44px] flex items-center justify-center"
         aria-label={isExpanded ? "Collapse menu" : "Expand menu"}
       >
         {isExpanded ? <CloseIcon /> : <MenuIcon />}
@@ -167,7 +167,7 @@ export default function Sidebar() {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`cursor-pointer w-full text-left px-4 py-2 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden animate-fade-in ${
+              className={`cursor-pointer w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden animate-fade-in min-h-[44px] flex items-center ${
                 !isExpanded && "flex justify-center px-2"
               }`}
               style={{ animationDelay: `${0.2 + index * 0.1}s` }}
