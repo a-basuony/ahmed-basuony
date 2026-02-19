@@ -112,7 +112,7 @@ export default function HeroSection() {
               >
                 <Link
                   target="_blank"
-                  href="https://drive.google.com/file/d/1zEyfK6jc3fCPZ4fKJPgDhcWT3t1Kb-4Y/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1-pNo9ZgmlLwov2GDJ8eKn6dDG_9LMDoP/view?usp=sharing"
                   className="flex items-center gap-2"
                 >
                   <Download className="w-5 h-5" />
