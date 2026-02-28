@@ -12,7 +12,7 @@ import Image from "next/image";
 
 export default function Certificates() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [showAll, setShowAll] = useState<boolean>(false);
+  const [visibleCount, setVisibleCount] = useState<number>(4);
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -190,22 +190,21 @@ export default function Certificates() {
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
-  // Filter certificates based on showAll state
-  const displayedCertificates = showAll
-    ? certificates
-    : certificates.slice(0, 2);
-  const remainingCount = certificates.length - 2;
+  // Filter certificates based on visibleCount
+  const displayedCertificates = certificates.slice(0, visibleCount);
+  const remainingCount = certificates.length - visibleCount;
 
-  // Toggle handler with smooth scroll
-  const toggleShowAll = () => {
-    if (showAll) {
-      // Scroll to top of section when collapsing
-      containerRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-    setShowAll(!showAll);
+  const handleShowMore = () => {
+    setVisibleCount((prev) => prev + 4);
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount(4);
+    // Scroll to top of section when collapsing
+    containerRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   return (
@@ -294,14 +293,16 @@ export default function Certificates() {
           <AnimatePresence mode="sync">
             {displayedCertificates.map((cert, index) => (
               <motion.div
-                key={index}
+                key={cert.title}
+                layout
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.6, delay: (index % 4) * 0.2 }}
                 viewport={{ once: true }}
                 onHoverStart={() => setHoveredIndex(index)}
                 onHoverEnd={() => setHoveredIndex(null)}
-                className="group relative"
+                className="group relative h-full"
               >
                 {/* Card Glow Effect */}
                 <motion.div
@@ -472,57 +473,58 @@ export default function Certificates() {
 
         {/* Show More/Less Button */}
         <motion.div
-          className="mt-12 flex justify-center"
+          className="mt-12 flex flex-wrap justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <motion.button
-            onClick={toggleShowAll}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative px-8 py-4 bg-linear-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 overflow-hidden"
-            aria-label={
-              showAll
-                ? "Show less certificates"
-                : `Show more certificates (${remainingCount} more)`
-            }
-            aria-expanded={showAll}
-          >
-            {/* Button shine effect */}
-            <motion.div
-              className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full"
-              whileHover={{
-                x: "200%",
-                transition: { duration: 0.6 },
-              }}
-            />
+          {visibleCount < certificates.length && (
+            <motion.button
+              onClick={handleShowMore}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="cursor-pointer group relative px-8 py-4 bg-linear-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 overflow-hidden"
+              aria-label={`Show more certificates (${remainingCount} more)`}
+            >
+              <motion.div
+                className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full"
+                whileHover={{
+                  x: "200%",
+                  transition: { duration: 0.6 },
+                }}
+              />
+              <span className="relative z-10 flex items-center gap-2">
+                Show More ({remainingCount} more)
+                <motion.span
+                  animate={{ y: [0, 3, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  ↓
+                </motion.span>
+              </span>
+            </motion.button>
+          )}
 
-            <span className="relative z-10 flex items-center gap-2">
-              {showAll ? (
-                <>
-                  Show Less
-                  <motion.span
-                    animate={{ y: [0, 3, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    ↑
-                  </motion.span>
-                </>
-              ) : (
-                <>
-                  Show More ({remainingCount} more)
-                  <motion.span
-                    animate={{ y: [0, 3, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    ↓
-                  </motion.span>
-                </>
-              )}
-            </span>
-          </motion.button>
+          {visibleCount > 4 && (
+            <motion.button
+              onClick={handleShowLess}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="cursor-pointer group relative px-8 py-4 bg-slate-800 dark:bg-slate-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+              aria-label="Show less certificates"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Show Less
+                <motion.span
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  ↑
+                </motion.span>
+              </span>
+            </motion.button>
+          )}
         </motion.div>
       </div>
     </section>

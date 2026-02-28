@@ -493,11 +493,13 @@ export default function Projects() {
             {projects.slice(0, visibleCount).map((project, index) => (
               <motion.div
                 key={project.id}
+                layout
                 className="group relative h-full flex flex-col"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                transition={{ delay: (index % 6) * 0.1, duration: 0.5 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
@@ -590,24 +592,36 @@ export default function Projects() {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          {visibleCount < projects.length ? (
-            <button
-              onClick={handleShowMore}
-              className="px-8 py-3 rounded-full bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-all duration-300 flex items-center gap-2 group cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
-            >
-              <span>Show More</span>
-              <AutoAwesomeIcon className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-            </button>
-          ) : (
-            projects.length > 6 && (
-              <button
-                onClick={handleShowLess}
-                className="px-8 py-3 rounded-full bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/80 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg"
+          <div className="flex flex-wrap justify-center gap-4">
+            {visibleCount < projects.length && (
+              <motion.button
+                onClick={handleShowMore}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 rounded-full bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-all duration-300 flex items-center gap-2 group cursor-pointer hover:shadow-lg hover:shadow-primary/20"
               >
-                Show Less
-              </button>
-            )
-          )}
+                <span>Show More ({projects.length - visibleCount} more)</span>
+                <AutoAwesomeIcon className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+              </motion.button>
+            )}
+
+            {visibleCount > 6 && (
+              <motion.button
+                onClick={handleShowLess}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 rounded-full bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/80 transition-all duration-300 flex items-center gap-2 cursor-pointer hover:shadow-lg"
+              >
+                <span>Show Less</span>
+                <motion.span
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  ↑
+                </motion.span>
+              </motion.button>
+            )}
+          </div>
 
           <div className="flex flex-col items-center gap-2">
             <p className="text-muted-foreground text-sm">

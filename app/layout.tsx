@@ -307,7 +307,7 @@ export default function RootLayout({
       "@type": "ContactPoint",
       contactType: "Professional",
       email: "ahmedbasuony.dev@gmail.com",
-      telephone: "+201093793161",
+      telephone: "+966511861442",
       availableLanguage: ["English", "Arabic"],
     },
     hasOccupation: {
@@ -350,7 +350,7 @@ export default function RootLayout({
     description:
       "Professional MERN Stack development services including MongoDB database design, Express.js backend development, React frontend development, and Node.js server-side solutions.",
     url: SITE_URL,
-    telephone: "+201093793161",
+    telephone: "+966511861442",
     priceRange: "$$",
     areaServed: [
       {

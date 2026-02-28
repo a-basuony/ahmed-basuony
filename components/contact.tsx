@@ -85,8 +85,8 @@ export default function Contact() {
       ),
       bg: "bg-green-100",
       label: "WhatsApp",
-      value: "+20 109 379 3161",
-      href: "https://api.whatsapp.com/send?phone=201093793161",
+      value: "+966 511 861 442",
+      href: "https://api.whatsapp.com/send?phone=966511861442",
     },
     {
       // LinkedIn (brand blue)
@@ -160,9 +160,11 @@ export default function Contact() {
               <a
                 key={index}
                 href={info.href}
-                className="group p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:translate-x-1 animate-fade-in"
+                className="block group relative p-4 rounded-xl bg-card border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_30px_-5px_var(--primary)] hover:-translate-y-1 overflow-hidden"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {/* Subtle gradient background on hover */}
+                <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="flex items-start gap-4">
                   <div
                     className={`w-11 h-11 rounded-full ${info.bg} relative z-10 flex items-center justify-center shrink-0 hover:rotate-10 hover:scale-110 transition-transform duration-300 text-lg`}

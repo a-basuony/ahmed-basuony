@@ -15,7 +15,8 @@ import { socialLinks } from "@/lib/social-links";
 
 export default function Sidebar() {
   const { theme, toggleTheme } = useTheme();
-  const [isExpanded, setIsExpanded] = useState(true);
+  // Set isExpanded to false by default on mount
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);

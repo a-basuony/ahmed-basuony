@@ -37,7 +37,7 @@ export const socialLinks = [
     name: "WhatsApp",
     label: "WhatsApp",
     icon: <WhatsAppIcon />,
-    href: "https://api.whatsapp.com/send?phone=201093793161&text=Hello%20Ahmed,%20I%20visited%20your%20portfolio",
+    href: "https://api.whatsapp.com/send?phone=966511861442&text=Hello%20Ahmed,%20I%20visited%20your%20portfolio",
     color: "#25D366",
     textClass: "text-[#25D366]",
     bgClass: "bg-green-50 dark:bg-green-900/20",

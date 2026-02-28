@@ -31,15 +31,27 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(139,92,246,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.08)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
       {/* Background Image Layer - Right Side */}
-      <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[55%] z-0 opacity-40 pointer-events-none">
+      <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[55%] z-0 opacity-40 lg:opacity-40 sm:opacity-60 pointer-events-none">
         <div className="relative w-full h-full">
+          {/* Mobile image */}
           <Image
             src="/images/ahmed33.png"
             alt=""
             fill
-            className="object-cover object-[100%_0%]"
+            className="object-cover object-[20%_0%] md:object-[100%_60%] block lg:hidden"
             priority
-            sizes="(max-width: 1024px) 100vw, 55vw"
+            sizes="70vw"
+            quality={85}
+          />
+
+          {/* Desktop image */}
+          <Image
+            src="/images/ahmed.png"
+            alt=""
+            fill
+            className="object-cover object-[100%_0%] hidden lg:block"
+            priority
+            sizes="55vw"
             quality={85}
           />
           {/* Gradient overlay for smooth blending with background */}
