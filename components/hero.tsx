@@ -22,7 +22,7 @@ export default function HeroSection() {
   return (
     <section
       id="About Me"
-      className="relative min-h-screen overflow-hidden flex items-center bg-gradient-to-br from-slate-50 via-purple-50/30 to-pink-50/20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-purple-950/20 dark:to-slate-900"
+      className="relative min-h-screen  overflow-hidden flex items-center bg-gradient-to-br from-slate-50 via-purple-50/30 to-pink-50/20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-purple-950/20 dark:to-slate-900"
     >
       {/* Dynamic Background Elements (Deferred) */}
       <HeroDynamic />
@@ -124,7 +124,8 @@ export default function HeroSection() {
               >
                 <Link
                   target="_blank"
-                  href="https://drive.google.com/file/d/1-pNo9ZgmlLwov2GDJ8eKn6dDG_9LMDoP/view?usp=sharing"
+                  // href="https://drive.google.com/file/d/1-pNo9ZgmlLwov2GDJ8eKn6dDG_9LMDoP/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1pDZUrN0vgukGKL-uaD6ttyO30-ajXXN4/view"
                   className="flex items-center gap-2"
                 >
                   <Download className="w-5 h-5" />
@@ -145,9 +146,9 @@ export default function HeroSection() {
             </div>
 
             {/* Social Links */}
-            <div className="flex gap-6 animate-fade-in-up delay-300">
+            {/* <div className="flex gap-2 animate-fade-in-up delay-300">
               {socialLinks
-                .filter((link) => link.name !== "WhatsApp")
+                // .filter((link) => link.name !== "WhatsApp")
                 .map((social) => (
                   <motion.a
                     key={social.name}
@@ -166,6 +167,43 @@ export default function HeroSection() {
                     </span>
                   </motion.a>
                 ))}
+            </div> */}
+            {/* Social Links */}
+            <div className="flex flex-wrap justify-center sm:justify-start gap-3 md:gap-4 animate-fade-in-up delay-300 mb-6 sm:mb-0">
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  whileHover={{ scale: 1.15, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  /* 
+         Changed w-12 h-12 to be dynamic: 
+         w-10 h-10 (mobile) -> sm:w-12 sm:h-12 (desktop) 
+      */
+                  className={`
+        w-10 h-10 sm:w-12 sm:h-12 
+        bg-slate-200 dark:bg-slate-800 backdrop-blur-sm 
+        border border-slate-300 dark:border-slate-700 
+        rounded-full flex items-center justify-center 
+        hover:bg-purple-600 hover:border-purple-600 
+        dark:hover:bg-purple-500/30 dark:hover:border-purple-500/50 
+        transition-all group
+      `}
+                >
+                  <span
+                    className={`
+          text-lg sm:text-xl 
+          group-hover:scale-110 transition-transform 
+          ${social.textClass}
+        `}
+                  >
+                    {social.icon}
+                  </span>
+                </motion.a>
+              ))}
             </div>
           </div>
         </div>

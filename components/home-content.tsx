@@ -4,26 +4,16 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/hero";
 
 // Above-the-fold: direct imports for SSR (Hero)
+import Sidebar from "@/components/sidebar";
+import BottomNavbar from "@/components/Navbar";
+import Footer from "@/components/footer";
+
 // Below-the-fold: dynamic imports for code-splitting
-const Sidebar = dynamic(() => import("@/components/sidebar"), {
-  ssr: false,
-  loading: () => (
-    <aside className="hidden sm:flex sticky left-0 top-0 h-screen w-72 bg-sidebar border-r border-sidebar-border p-6 flex-col z-40 animate-pulse" />
-  ),
-});
-const BottomNavbar = dynamic(() => import("@/components/Navbar"), {
-  ssr: false,
-});
 const Skills = dynamic(() => import("@/components/skills"));
 const Projects = dynamic(() => import("@/components/projects"));
-const Certificates = dynamic(() => import("@/components/certificates"), {
-  ssr: false,
-});
-const Testimonials = dynamic(() => import("@/components/testimonials"), {
-  ssr: false,
-});
-const Contact = dynamic(() => import("@/components/contact"), { ssr: false });
-const Footer = dynamic(() => import("@/components/footer"), { ssr: false });
+const Certificates = dynamic(() => import("@/components/certificates"));
+const Testimonials = dynamic(() => import("@/components/testimonials"));
+const Contact = dynamic(() => import("@/components/contact"));
 const ChatBot = dynamic(() => import("@/components/chatbot"), { ssr: false });
 const GoTop = dynamic(() => import("@/components/go-top"), { ssr: false });
 

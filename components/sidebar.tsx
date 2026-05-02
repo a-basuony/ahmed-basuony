@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTheme } from "@/lib/theme-provider";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -15,8 +15,15 @@ import { socialLinks } from "@/lib/social-links";
 
 export default function Sidebar() {
   const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   // Set isExpanded to false by default on mount
   const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = mounted ? theme : "dark";
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -99,7 +106,7 @@ export default function Sidebar() {
           role="button"
           tabIndex={0}
           aria-label={
-            theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
+            currentTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
           }
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -111,23 +118,23 @@ export default function Sidebar() {
         >
           <div
             className={`w-11 h-6 rounded-full flex items-center relative transition-colors duration-300 ${
-              theme === "dark"
+              currentTheme === "dark"
                 ? "bg-blue-600/30 dark:bg-green-600/30"
                 : "bg-gray-300"
             }`}
           >
             <div
               className={`w-5 h-5 absolute transition-all duration-300 flex items-center justify-center ${
-                theme === "dark"
+                currentTheme === "dark"
                   ? "text-green-400 dark:text-green-500"
                   : "text-yellow-500"
               }`}
               style={{
                 transform:
-                  theme === "dark" ? "translateX(22px)" : "translateX(2px)",
+                  currentTheme === "dark" ? "translateX(22px)" : "translateX(2px)",
               }}
             >
-              {theme === "dark" ? (
+              {currentTheme === "dark" ? (
                 <BedtimeIcon sx={{ fontSize: 18 }} />
               ) : (
                 <SunnyIcon sx={{ fontSize: 18 }} />
@@ -135,23 +142,23 @@ export default function Sidebar() {
             </div>
           </div>
           <span className="text-xs font-medium text-sidebar-foreground/80">
-            {theme === "dark" ? "Dark" : "Light"} Mode
+            {currentTheme === "dark" ? "Dark" : "Light"} Mode
           </span>
         </div>
       ) : (
         <button
           onClick={toggleTheme}
           className={`mb-6 p-2.5 cursor-pointer transition-all duration-300 flex items-center justify-center rounded-lg ${
-            theme === "dark"
+            currentTheme === "dark"
               ? "hover:bg-green-500/20 text-green-400"
               : "hover:bg-yellow-500/20 text-yellow-600"
           }`}
           title={
-            theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
+            currentTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
           }
         >
           <span className="text-xl">
-            {theme === "dark" ? <BedtimeIcon /> : <SunnyIcon />}
+            {currentTheme === "dark" ? <BedtimeIcon /> : <SunnyIcon />}
           </span>
         </button>
       )}
@@ -211,10 +218,10 @@ export default function Sidebar() {
                 className=" p-2 rounded-lg bg-sidebar-primary/10 hover:bg-sidebar-primary/20 transition-all duration-300 group hover:scale-110 hover:rotate-5 animate-fade-in text-lg flex items-center justify-center"
                 style={{
                   color:
-                    theme === "dark"
+                    currentTheme === "dark"
                       ? `color-mix(in srgb, ${social.color} 80%, white 50%)`
                       : `color-mix(in srgb, ${social.color} 70%, #64748B 30%)`,
-                  opacity: theme === "dark" ? 1 : 0.85,
+                  opacity: currentTheme === "dark" ? 1 : 0.85,
                   animationDelay: `${0.6 + index * 0.1}s`,
                 }}
                 aria-label={social.label}

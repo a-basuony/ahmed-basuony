@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/lib/theme-provider";
 import HomeIcon from "@mui/icons-material/Home";
@@ -13,7 +13,14 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 export default function BottomNavbar() {
   const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = mounted ? theme : "dark";
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -57,8 +64,8 @@ export default function BottomNavbar() {
       bgColor: "bg-pink-500/10",
     },
     {
-      icon: theme === "dark" ? <DarkModeIcon /> : <LightModeIcon />,
-      label: theme === "dark" ? "Dark" : "Light",
+      icon: currentTheme === "dark" ? <DarkModeIcon /> : <LightModeIcon />,
+      label: currentTheme === "dark" ? "Dark" : "Light",
       action: "theme",
       activeColor: "text-yellow-500",
       bgColor: "bg-yellow-500/10",
