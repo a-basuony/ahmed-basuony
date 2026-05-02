@@ -30,7 +30,6 @@ export default function Contact() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // تحقق من صحة البريد الإلكتروني عند تغييره
     if (name === "email") {
       setIsValidEmail(emailRegex.test(value));
     }
@@ -77,7 +76,6 @@ export default function Contact() {
       href: "mailto:ahmedbasuony.dev@gmail.com",
     },
     {
-      // Phone/WhatsApp (brand green)
       icon: (
         <span className="relative z-20 text-[#25D366]">
           <WhatsAppIcon />

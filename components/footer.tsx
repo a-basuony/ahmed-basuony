@@ -79,7 +79,6 @@ export default function Footer() {
             </h4>
             <div className="flex gap-4">
               {socialLinks
-                .filter((link) => link.name !== "WhatsApp") // Matches Hero behavior
                 .map((social, index) => (
                   <a
                     key={social.label}
