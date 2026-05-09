@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
+
 const HeroDynamic = dynamic(() => import("@/components/hero-dynamic"), {
   ssr: false,
 });
@@ -24,6 +25,8 @@ export default function HeroSection() {
       id="About Me"
       className="relative min-h-screen  overflow-hidden flex items-center bg-gradient-to-br from-slate-50 via-purple-50/30 to-pink-50/20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-purple-950/20 dark:to-slate-900"
     >
+
+
       {/* Dynamic Background Elements (Deferred) */}
       <HeroDynamic />
 
