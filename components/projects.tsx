@@ -65,16 +65,17 @@ export default function Projects() {
 
   const MERN_PROJECTS: ProjectData[] = [
     {
-      id: "mern-ecommerce",
+      id: "shoppire-ecommerce",
       title: "MERN E-Commerce Pro",
       description:
         "Full-featured e-commerce platform with product management, cart system, authentication, and Stripe payments. Includes admin dashboard.",
       tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "Stripe"],
-      demo: "https://e-commerce-full-stack-mern-wp03fbbzp-ahmed-basuonys-projects.vercel.app/",
-      code: "https://github.com/a-basuony/E-Commerce-Full-Stack-MERN",
-      image: "/images/ecommerce.png",
+      demo: "https://shoppire-ashy.vercel.app/",
+      code: "https://github.com/a-basuony/shoppire",
+      image: "/images/e-commerce-Shoppire.png",
     },
-
+    
+   
     {
       id: "mern-chat",
       title: "Dardasha Real-time chat",
@@ -104,16 +105,7 @@ export default function Projects() {
       image: "/images/booking-doctor.png",
     },
 
-    {
-      id: "mern-social",
-      title: "LinkedIn Clone",
-      description:
-        "Social platform for developers with profiles, posts, chat, and GitHub integration.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "JWT"],
-      demo: "https://linkedin-clone-two-taupe.vercel.app/",
-      code: "https://github.com/a-basuony/Linkedin_Clone",
-      image: "/images/linkedin-clone.png",
-    },
+    
     {
       id: "mern-happyshop",
       title: "HappyShop",
@@ -155,6 +147,16 @@ export default function Projects() {
       code: "https://github.com/a-basuony/FOOD-ORDER",
       image: "/images/reactmeal.png",
     },
+     {
+      id: "mern-ecommerce",
+      title: "MERN E-Commerce Pro",
+      description:
+        "Full-featured e-commerce platform with product management, cart system, authentication, and Stripe payments. Includes admin dashboard.",
+      tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "Stripe"],
+      demo: "https://e-commerce-full-stack-mern-wp03fbbzp-ahmed-basuonys-projects.vercel.app/",
+      code: "https://github.com/a-basuony/E-Commerce-Full-Stack-MERN",
+      image: "/images/ecommerce.png",
+    },
 
     {
       id: "amazon-clone",
@@ -185,7 +187,16 @@ export default function Projects() {
       code: "",
       image: "/images/tesla.webp",
     },
-
+{
+      id: "mern-social",
+      title: "LinkedIn Clone",
+      description:
+        "Social platform for developers with profiles, posts, chat, and GitHub integration.",
+      tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "JWT"],
+      demo: "https://linkedin-clone-two-taupe.vercel.app/",
+      code: "https://github.com/a-basuony/Linkedin_Clone",
+      image: "/images/linkedin-clone.png",
+    },
     {
       id: "google-clone",
       title: "Google Search Clone",
