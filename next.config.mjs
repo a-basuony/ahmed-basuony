@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  devIndicators: false,
   images: {
+    qualities: [85, 100],
     remotePatterns: [
       {
         protocol: "https",

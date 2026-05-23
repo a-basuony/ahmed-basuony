@@ -3,9 +3,11 @@
 import { useEffect, useState, useRef } from "react";
 import { ArrowUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 
 export default function GoTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const rafId = useRef(0);
 
   const scrollToTop = () => {
@@ -16,6 +18,8 @@ export default function GoTop() {
   };
 
   useEffect(() => {
+    setMounted(true);
+
     const onScroll = () => {
       if (rafId.current) return;
       rafId.current = requestAnimationFrame(() => {
@@ -30,23 +34,26 @@ export default function GoTop() {
     };
   }, []);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isVisible && (
         <motion.button
           initial={{ opacity: 0, scale: 0.5, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="cursor-pointer fixed md:bottom-24 bottom-42 right-8 z-50 p-3 rounded-full bg-linear-to-br from-purple-600 to-blue-600 text-white shadow-2xl transition-all duration-300 hover:shadow-purple-500/50 group"
+          className="group fixed bottom-52 right-5 z-40 flex size-11 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)),rgb(var(--brand-accent-rgb)))] text-primary-foreground shadow-xl shadow-primary/15 transition-all duration-300 hover:shadow-primary/30 sm:bottom-40 sm:right-6 sm:size-12"
           title="Go to Top"
           aria-label="Go to Top"
         >
-          <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform duration-300" />
+          <ArrowUp className="size-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
         </motion.button>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }

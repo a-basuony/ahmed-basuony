@@ -1,34 +1,21 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useMemo } from "react";
+import { motion } from "framer-motion";
+import { useMemo, useRef } from "react";
 import {
   Code as HtmlIcon,
   Palette as CssIcon,
-  Brush as SassIcon,
-  Layers as BootstrapIcon,
   Waves as TailwindIcon,
-  Javascript as JavascriptIcon,
   IntegrationInstructions as TypescriptIcon,
   ChangeHistory as ReactIcon,
   NightsStay as NextIcon,
-  PhoneIphone as ReactNativeIcon,
   Widgets as MaterialUIIcon,
   AutoAwesome as ShadcnIcon,
-  BarChart as NivoIcon,
-  QueryStats as ReactQueryIcon,
   Api as ApiIcon,
-  Whatshot as FirebaseIcon,
-  AccountCircle as ClerkIcon,
-  Payment as PaypalIcon,
   Settings as WebpackIcon,
-  FlashOn as ViteIcon,
-  CloudUpload as FirebaseHostingIcon,
   ChangeCircle as VercelIcon,
-  Public as NetlifyIcon,
   Hub as NodeIcon,
   Terminal as ExpressIcon,
-  CloudQueue as ConvexIcon,
   Widgets as WidgetsIcon,
   Launch as LaunchIcon,
   Lightbulb as LightbulbIcon,
@@ -44,73 +31,209 @@ export default function Skills() {
   const skillCategories = useMemo(
     () => [
       {
-        title: "Frontend Technologies",
+        title: "Core Frontend Stack",
         skills: [
           { name: "HTML5", icon: <HtmlIcon sx={{ color: "#ff5722" }} /> },
           { name: "CSS3", icon: <CssIcon sx={{ color: "#2196f3" }} /> },
-          { name: "React.js", icon: <ReactIcon sx={{ color: "#61dafb" }} /> },
-          { name: "Next.js", icon: <NextIcon sx={{ color: "#bdbdbd" }} /> },
+          {
+            name: "JavaScript ES6+",
+            icon: <CodeIcon sx={{ color: "#f7df1e" }} />,
+          },
           {
             name: "TypeScript",
             icon: <TypescriptIcon sx={{ color: "#3178c6" }} />,
           },
+          { name: "React.js", icon: <ReactIcon sx={{ color: "#61dafb" }} /> },
+          { name: "Next.js", icon: <NextIcon sx={{ color: "#bdbdbd" }} /> },
           {
-            name: "Redux & RTK",
+            name: "React Hooks",
+            icon: <LoopIcon sx={{ color: "#61dafb" }} />,
+          },
+          {
+            name: "Redux Toolkit",
             icon: <ReactIcon sx={{ color: "#764abc" }} />,
           },
         ],
       },
       {
-        title: "Backend & Database",
-        skills: [
-          { name: "Node.js", icon: <NodeIcon sx={{ color: "#339933" }} /> },
-          {
-            name: "Express.js",
-            icon: <ExpressIcon sx={{ color: "#000000" }} />,
-          },
-          { name: "MongoDB", icon: <NodeIcon sx={{ color: "#47A248" }} /> }, // Using NodeIcon as placeholder if Mongo not avail, or use generic
-          { name: "Mongoose", icon: <CodeIcon sx={{ color: "#880000" }} /> },
-          { name: "REST APIs", icon: <ApiIcon sx={{ color: "#00e676" }} /> },
-          { name: "Socket.io", icon: <ApiIcon sx={{ color: "#010101" }} /> },
-        ],
-      },
-      {
-        title: "UI & Styling",
+        title: "UI, Styling & Experience",
         skills: [
           {
             name: "Tailwind CSS",
             icon: <TailwindIcon sx={{ color: "#06b6d4" }} />,
           },
           {
+            name: "ShadCN UI",
+            icon: <ShadcnIcon sx={{ color: "#ab47bc" }} />,
+          },
+          {
             name: "Material UI",
             icon: <MaterialUIIcon sx={{ color: "#00b0ff" }} />,
           },
-          { name: "ShadCN UI", icon: <ShadcnIcon sx={{ color: "#ab47bc" }} /> },
           {
             name: "Framer Motion",
-            icon: <AutoAwesomeIcon sx={{ color: "#FF0055" }} />,
+            icon: <AutoAwesomeIcon sx={{ color: "#ff0055" }} />,
           },
-          { name: "Sass", icon: <SassIcon sx={{ color: "#e91e63" }} /> },
+          {
+            name: "Responsive Design",
+            icon: <WidgetsIcon sx={{ color: "#14b8a6" }} />,
+          },
+          {
+            name: "Forms & Validation",
+            icon: <CodeIcon sx={{ color: "#22c55e" }} />,
+          },
+          {
+            name: "Dashboard Layouts",
+            icon: <WidgetsIcon sx={{ color: "#8b5cf6" }} />,
+          },
         ],
       },
       {
-        title: "Tools & DevOps",
+        title: "Backend & APIs",
+        skills: [
+          { name: "Node.js", icon: <NodeIcon sx={{ color: "#339933" }} /> },
+          {
+            name: "Express.js",
+            icon: <ExpressIcon sx={{ color: "#111827" }} />,
+          },
+          { name: "REST APIs", icon: <ApiIcon sx={{ color: "#00e676" }} /> },
+          {
+            name: "JWT Authentication",
+            icon: <ApiIcon sx={{ color: "#f97316" }} />,
+          },
+          {
+            name: "RBAC Permissions",
+            icon: <CodeIcon sx={{ color: "#a855f7" }} />,
+          },
+          {
+            name: "API Validation",
+            icon: <ApiIcon sx={{ color: "#38bdf8" }} />,
+          },
+          {
+            name: "Socket.io",
+            icon: <ApiIcon sx={{ color: "#7c3aed" }} />,
+          },
+        ],
+      },
+      {
+        title: "Databases & Data Modeling",
+        skills: [
+          { name: "MongoDB", icon: <NodeIcon sx={{ color: "#47a248" }} /> },
+          { name: "Mongoose", icon: <CodeIcon sx={{ color: "#880000" }} /> },
+          {
+            name: "Schema Design",
+            icon: <CodeIcon sx={{ color: "#22c55e" }} />,
+          },
+          {
+            name: "Indexes",
+            icon: <LaunchIcon sx={{ color: "#f59e0b" }} />,
+          },
+          {
+            name: "Aggregation Pipelines",
+            icon: <LoopIcon sx={{ color: "#10b981" }} />,
+          },
+          {
+            name: "Pagination",
+            icon: <WidgetsIcon sx={{ color: "#0ea5e9" }} />,
+          },
+          {
+            name: "SQL Fundamentals",
+            icon: <WidgetsIcon sx={{ color: "#336791" }} />,
+          },
+        ],
+      },
+      {
+        title: "Tools & Deployment",
         skills: [
           {
             name: "Git & GitHub",
             icon: <GitHubIcon sx={{ color: "#181717" }} />,
           },
+          { name: "Postman", icon: <LaunchIcon sx={{ color: "#ff6c37" }} /> },
           { name: "Docker", icon: <WidgetsIcon sx={{ color: "#2496ed" }} /> },
-          { name: "Postman", icon: <LaunchIcon sx={{ color: "#FF6C37" }} /> },
           { name: "Vercel", icon: <VercelIcon sx={{ color: "#eeeeee" }} /> },
           {
-            name: "Webpack/Vite",
+            name: "Environment Variables",
             icon: <WebpackIcon sx={{ color: "#4fc3f7" }} />,
+          },
+          {
+            name: "Production Deployment",
+            icon: <LaunchIcon sx={{ color: "#22c55e" }} />,
+          },
+          {
+            name: "Swagger / OpenAPI",
+            icon: <ApiIcon sx={{ color: "#85ea2d" }} />,
           },
         ],
       },
       {
-        title: "Soft Skills",
+        title: "Project Experience",
+        skills: [
+          {
+            name: "E-commerce Systems",
+            icon: <LaunchIcon sx={{ color: "#f97316" }} />,
+          },
+          {
+            name: "Admin Dashboards",
+            icon: <WidgetsIcon sx={{ color: "#8b5cf6" }} />,
+          },
+          {
+            name: "Booking Workflows",
+            icon: <AccessTimeIcon sx={{ color: "#7b1fa2" }} />,
+          },
+          {
+            name: "Chat Features",
+            icon: <ApiIcon sx={{ color: "#7c3aed" }} />,
+          },
+          {
+            name: "Business Platforms",
+            icon: <WidgetsIcon sx={{ color: "#0ea5e9" }} />,
+          },
+          {
+            name: "Payment Workflows",
+            icon: <ApiIcon sx={{ color: "#22c55e" }} />,
+          },
+          {
+            name: "API Documentation",
+            icon: <CodeIcon sx={{ color: "#38bdf8" }} />,
+          },
+        ],
+      },
+      {
+        title: "Currently Expanding",
+        skills: [
+          {
+            name: "NestJS Basics",
+            icon: <CodeIcon sx={{ color: "#e0234e" }} />,
+          },
+          {
+            name: "PostgreSQL Basics",
+            icon: <WidgetsIcon sx={{ color: "#336791" }} />,
+          },
+          {
+            name: "Redis Basics",
+            icon: <WidgetsIcon sx={{ color: "#dc382d" }} />,
+          },
+          {
+            name: "AWS Basics",
+            icon: <LaunchIcon sx={{ color: "#ff9900" }} />,
+          },
+          {
+            name: "CI/CD Basics",
+            icon: <LoopIcon sx={{ color: "#4caf50" }} />,
+          },
+          {
+            name: "Testing Basics",
+            icon: <LightbulbIcon sx={{ color: "#fbc02d" }} />,
+          },
+          {
+            name: "AI-Assisted Development",
+            icon: <AutoAwesomeIcon sx={{ color: "#a855f7" }} />,
+          },
+        ],
+      },
+      {
+        title: "Professional Skills",
         skills: [
           {
             name: "Problem Solving",
@@ -120,10 +243,21 @@ export default function Skills() {
             name: "Team Collaboration",
             icon: <GroupsIcon sx={{ color: "#1976d2" }} />,
           },
-          { name: "Agile/Scrum", icon: <LoopIcon sx={{ color: "#4caf50" }} /> },
+          {
+            name: "Ownership Mindset",
+            icon: <LaunchIcon sx={{ color: "#22c55e" }} />,
+          },
           {
             name: "Time Management",
             icon: <AccessTimeIcon sx={{ color: "#7b1fa2" }} />,
+          },
+          {
+            name: "Client Communication",
+            icon: <GroupsIcon sx={{ color: "#06b6d4" }} />,
+          },
+          {
+            name: "Continuous Learning",
+            icon: <AutoAwesomeIcon sx={{ color: "#a855f7" }} />,
           },
         ],
       },
@@ -137,11 +271,12 @@ export default function Skills() {
     <section
       id="skills"
       ref={containerRef}
-      className="relative min-h-screen py-20 md:py-32 overflow-hidden bg-background text-foreground transition-colors duration-500"
+      className="relative min-h-screen overflow-hidden bg-background py-20 text-foreground transition-colors duration-500 md:py-32"
     >
       {/* Background - Dot Grid & Animated Gradients */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#ffffff33_1px,transparent_1px)] bg-size-[20px_20px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[20px_20px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] dark:bg-[radial-gradient(#ffffff33_1px,transparent_1px)]" />
+
         <motion.div
           animate={{
             x: [0, 100, 0],
@@ -153,8 +288,9 @@ export default function Skills() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] -z-10"
+          className="absolute right-0 top-0 -z-10 h-[500px] w-[500px] rounded-full bg-purple-500/20 blur-[100px]"
         />
+
         <motion.div
           animate={{
             x: [0, -100, 0],
@@ -167,63 +303,66 @@ export default function Skills() {
             ease: "easeInOut",
             delay: 1,
           }}
-          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] -z-10"
+          className="absolute bottom-0 left-0 -z-10 h-[500px] w-[500px] rounded-full bg-blue-500/20 blur-[100px]"
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-6">
         <motion.div
-          className="mb-16 md:mb-24 text-center"
+          className="mb-16 text-center md:mb-24"
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm mb-4 md:mb-6">
-            <ShadcnIcon className="text-accent w-3 h-3 md:w-4 md:h-4" />
-            <span className="text-xs md:text-sm font-semibold text-accent">
-              Technical Proficiency
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-3 py-1.5 backdrop-blur-sm md:mb-6 md:px-4 md:py-2">
+            <ShadcnIcon className="h-3 w-3 text-accent md:h-4 md:w-4" />
+            <span className="text-xs font-semibold text-accent md:text-sm">
+              Full-Stack Web Stack
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 md:mb-6">
-            <span className="bg-linear-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
-              Skills & Expertise
+          <h2 className="mb-4 text-4xl font-extrabold tracking-tight md:mb-6 md:text-6xl">
+            <span className="animate-gradient bg-linear-to-r from-primary via-accent to-primary bg-clip-text bg-size-[200%_auto] text-transparent">
+              Skills & Technologies
             </span>
           </h2>
-          <div className="w-20 md:w-24 h-1.5 mx-auto bg-linear-to-r from-primary to-accent rounded-full" />
+
+          <p className="mx-auto max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-base">
+            A practical MERN-focused skill set for building responsive
+            interfaces, REST APIs, dashboards, business platforms, and
+            production-ready web applications.
+          </p>
+
+          <div className="mx-auto mt-6 h-1.5 w-20 rounded-full bg-linear-to-r from-primary to-accent md:w-24" />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
           {skillCategories.map((category, i) => (
             <motion.div
-              key={i}
-              className="group relative h-full p-6 md:p-8 rounded-3xl border border-border/50 
-              bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-all duration-500
-              shadow-lg hover:shadow-primary/5 dark:shadow-none flex flex-col"
+              key={category.title}
+              className="group relative flex h-full flex-col rounded-3xl border border-border/50 bg-card/50 p-6 shadow-lg backdrop-blur-xl transition-all duration-500 hover:bg-card/80 hover:shadow-primary/5 dark:shadow-none md:p-8"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
               whileHover={{ y: -5 }}
             >
-              <div className="absolute inset-0 rounded-3xl bg-linear-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 rounded-3xl bg-linear-to-b from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-              <h3 className="relative text-xl md:text-2xl font-bold mb-4 md:mb-6 text-foreground group-hover:text-primary transition-colors duration-300">
+              <h3 className="relative mb-4 text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary md:mb-6 md:text-2xl">
                 {category.title}
               </h3>
 
               <div className="relative flex flex-wrap gap-2 md:gap-3">
-                {category.skills.map((skill, idx) => (
+                {category.skills.map((skill) => (
                   <motion.div
-                    key={idx}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs md:text-sm font-medium
-                    bg-secondary/50 border border-border/50 text-foreground/80
-                    hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-colors duration-300 cursor-default"
+                    key={skill.name}
+                    className="flex cursor-default items-center gap-2 rounded-xl border border-border/50 bg-secondary/50 px-3 py-1.5 text-xs font-medium text-foreground/80 transition-colors duration-300 hover:border-primary/30 hover:bg-primary/10 hover:text-primary md:text-sm"
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <span className="flex items-center justify-center w-4 h-4 md:w-5 md:h-5">
+                    <span className="flex h-4 w-4 items-center justify-center md:h-5 md:w-5">
                       {skill.icon}
                     </span>
                     <span className="pt-0.5">{skill.name}</span>

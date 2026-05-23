@@ -4,9 +4,9 @@ import EmailIcon from "@mui/icons-material/Email";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import { SvgIcon } from "@mui/material";
+import { SvgIcon, type SvgIconProps } from "@mui/material";
 
-const LinktreeIcon = (props) => (
+const LinktreeIcon = (props: SvgIconProps) => (
   <SvgIcon {...props}>
     {/* Boxicons v3.0.8 Path */}
     <path d="M18.77 5.42 16.83 3.45 13.47 6.87 13.47 2 10.57 2 10.57 6.87 7.21 3.45 5.27 5.42 8.81 8.77 3.86 8.77 3.82 8.77 3.82 11.51 8.79 11.51 5.25 14.92 7.19 16.87 12 12.04 16.81 16.85 18.75 14.92 15.21 11.51 20.18 11.51 20.18 8.75 15.23 8.75 18.77 5.42z" />

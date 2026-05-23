@@ -1,658 +1,260 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import LaunchIcon from "@mui/icons-material/Launch";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import CodeIcon from "@mui/icons-material/Code";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import { getProjects, ProjectData } from "@/lib/firestore";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import CodeIcon from "@mui/icons-material/Code";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LaunchIcon from "@mui/icons-material/Launch";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
+import { archiveProjects, featuredProjects } from "@/data/projects";
+import MagneticButton from "@/components/magnetic-button";
+import ProjectMockup from "@/components/project-mockup";
+import Reveal from "@/components/reveal";
+import TiltCard from "@/components/tilt-card";
 
 export default function Projects() {
-  const [projects, setProjects] = useState<ProjectData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [visibleCount, setVisibleCount] = useState(6);
-
-  // const MERN_PROJECTS: ProjectData[] = [
-  //   {
-  //     id: "mern-ecommerce",
-  //     title: "MERN E-Commerce Pro",
-  //     description:
-  //       "Full-featured e-commerce platform with comprehensive product management, shopping cart functionality, user authentication, and secure payment processing via Stripe. Includes an admin dashboard for real-time inventory and order tracking.",
-  //     tech: [
-  //       "MongoDB",
-  //       "Express.js",
-  //       "React",
-  //       "Node.js",
-  //       "Redux",
-  //       "Stripe",
-  //       "MongoDB",
-  //     ],
-  //     demo: "https://e-commerce-full-stack-mern-wp03fbbzp-ahmed-basuonys-projects.vercel.app/",
-  //     code: "https://github.com/a-basuony/E-Commerce-Full-Stack-MERN",
-  //     image: "/images/ecommerce.png",
-  //   },
-  //   {
-  //     id: "MERN-Real-Time-Chat",
-  //     title: "TaskMaster AI",
-  //     description:
-  //       "Real-time chat application with features such as user authentication, real-time messaging, and group chat capabilities. Built using MongoDB, Express.js, React, and Node.js.",
-  //     tech: [
-  //       "MongoDB",
-  //       "Express.js",
-  //       "React",
-  //       "Node.js",
-  //       "Socket.io",
-  //       "OpenAI API",
-  //     ],
-  //     demo: "https://dardasha-real-time-chat-frontend.vercel.app/",
-  //     code: "https://github.com/a-basuony/Dardasha_real_time_chat_frontend",
-  //     image: "/images/chat.png",
-  //   },
-  //   {
-  //     id: "MERN-social",
-  //     title: "LinkedIn clone",
-  //     description:
-  //       "A robust social platform for developers to share knowledge, create profiles, and network. Features include real-time chat, post feeds, Github repository integration, and interactive discussion forums.",
-  //     tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "JWT"],
-  //     demo: "https://linkedin-clone-two-taupe.vercel.app/",
-  //     code: "https://github.com/a-basuony/Linkedin_Clone",
-  //     image: "/images/linkedin-clone.png",
-  //   },
-  // ];
-
-  const MERN_PROJECTS: ProjectData[] = [
-    {
-      id: "shoppire-ecommerce",
-      title: "MERN E-Commerce Pro",
-      description:
-        "Full-featured e-commerce platform with product management, cart system, authentication, and Stripe payments. Includes admin dashboard.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "Stripe"],
-      demo: "https://shoppire-ashy.vercel.app/",
-      code: "https://github.com/a-basuony/shoppire",
-      image: "/images/e-commerce-Shoppire.png",
-    },
-    
-   
-    {
-      id: "mern-chat",
-      title: "Dardasha Real-time chat",
-      description:
-        "Dardasha is a real-time chat application with authentication, group chats, video & audio call, share screen.",
-      tech: [
-        "MongoDB",
-        "Express.js",
-        "React",
-        "Node.js",
-        "Socket.io",
-        "OpenAI API",
-      ],
-      demo: "https://dardasha-real-time-chat-frontend.vercel.app/",
-      code: "https://github.com/a-basuony/Dardasha_real_time_chat_frontend",
-      image: "/images/chat.png",
-    },
-
-    {
-      id: "mern-booking",
-      title: "Doctor Booking",
-      description:
-        "Doctor Booking is a full-featured e-commerce platform with product management, cart system, authentication, and Stripe payments. Includes admin dashboard.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "JWT"],
-      demo: "https://doctor-booking-team2.vercel.app/",
-      code: "https://github.com/a-basuony/doctor-booking",
-      image: "/images/booking-doctor.png",
-    },
-
-    
-    {
-      id: "mern-happyshop",
-      title: "HappyShop",
-      description:
-        "Full-featured e-commerce platform with product management, cart system, authentication, and Stripe payments. Includes admin dashboard.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "Stripe"],
-      demo: "https://happy-shop-frontend-xi.vercel.app/",
-      code: "https://github.com/a-basuony/happyShop-frontend",
-      image: "/images/happy_shop.png",
-    },
-    {
-      id: "safarni",
-      title: "Safarni",
-      description:
-        "Full-featured travel platform with product management, cart system, authentication, and Stripe payments. Includes admin dashboard.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "Stripe"],
-      demo: "https://safarni-wza1.vercel.app/",
-      code: "https://github.com/a-basuony/safarni",
-      image: "/images/safarni.png",
-    },
-
-    // ================= NEW PROJECTS =================
-
-    {
-      id: "shoppy-dashboard",
-      title: "Shoppy Dashboard",
-      description: "Admin dashboard with analytics and management tools.",
-      tech: ["React", "Chart.js", "Material UI"],
-      demo: "https://shoppy-admin-dashboard.vercel.app/",
-      code: "https://github.com/a-basuony/Admin_Dashbord_React",
-      image: "/images/shoppy.webp",
-    },
-    {
-      id: "food-order",
-      title: "Food Order App",
-      description: "Food ordering system with cart functionality.",
-      tech: ["React", "Context API"],
-      demo: "https://a-basuony.github.io/ReactMeals/",
-      code: "https://github.com/a-basuony/FOOD-ORDER",
-      image: "/images/reactmeal.png",
-    },
-     {
-      id: "mern-ecommerce",
-      title: "MERN E-Commerce Pro",
-      description:
-        "Full-featured e-commerce platform with product management, cart system, authentication, and Stripe payments. Includes admin dashboard.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "Stripe"],
-      demo: "https://e-commerce-full-stack-mern-wp03fbbzp-ahmed-basuonys-projects.vercel.app/",
-      code: "https://github.com/a-basuony/E-Commerce-Full-Stack-MERN",
-      image: "/images/ecommerce.png",
-    },
-
-    {
-      id: "amazon-clone",
-      title: "Amazon Clone",
-      description: "Amazon e-commerce clone.",
-      tech: ["React", "Firebase", "Stripe"],
-      demo: "https://a-basuony.github.io/Amazon-Clone/",
-      code: "https://github.com/a-basuony/Amazone_Clone_ReactJs",
-      image: "/images/amazon.png",
-    },
-
-    {
-      id: "todo-advanced",
-      title: "Advanced Todo App",
-      description: "Advanced task management application.",
-      tech: ["React", "LocalStorage", "CSS"],
-      demo: "https://ad-todo-app.vercel.app/",
-      code: "",
-      image: "/images/todo.webp",
-    },
-
-    {
-      id: "tesla-clone",
-      title: "Tesla Clone",
-      description: "Tesla landing page clone.",
-      tech: ["React", "Styled Components"],
-      demo: "https://tesla-car-clone.vercel.app",
-      code: "",
-      image: "/images/tesla.webp",
-    },
-{
-      id: "mern-social",
-      title: "LinkedIn Clone",
-      description:
-        "Social platform for developers with profiles, posts, chat, and GitHub integration.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "JWT"],
-      demo: "https://linkedin-clone-two-taupe.vercel.app/",
-      code: "https://github.com/a-basuony/Linkedin_Clone",
-      image: "/images/linkedin-clone.png",
-    },
-    {
-      id: "google-clone",
-      title: "Google Search Clone",
-      description: "Google search engine clone.",
-      tech: ["React", "API", "Tailwind"],
-      demo: "https://google-s-c.vercel.app",
-      code: "",
-      image: "/images/google.webp",
-    },
-
-    {
-      id: "kanban-board",
-      title: "Kanban Board",
-      description: "Task management board (Kanban style).",
-      tech: ["JavaScript", "HTML", "CSS"],
-      demo: "https://a-basuony.github.io/Kalbonyan-Board/",
-      code: "https://github.com/a-basuony/Kalbonyan-Board",
-      image: "/images/kanban.png",
-    },
-
-    {
-      id: "covid-tracker",
-      title: "COVID-19 Tracker",
-      description: "COVID-19 statistics tracking app.",
-      tech: ["React", "API", "Charts"],
-      demo: "https://a-basuony.github.io/COVID-19-Tracker/",
-      code: "https://github.com/a-basuony/COVID-19-Tracker",
-      image: "/images/tracker.png",
-    },
-
-    {
-      id: "netflix-clone",
-      title: "Netflix Clone",
-      description: "Netflix UI clone built with React.",
-      tech: ["React", "API", "Firebase"],
-      demo: "https://a-basuony.github.io/netflix-clone/",
-      code: "https://github.com/a-basuony/netflix-clone",
-      image: "/images/netflix.png",
-    },
-
-    {
-      id: "ecommerce-react",
-      title: "Ecommerce React App",
-      description: "E-commerce product system with Redux.",
-      tech: ["React", "Redux"],
-      demo: "https://a-basuony.github.io/Commerce-react-app/",
-      code: "https://github.com/a-basuony/Commerce-react-app",
-      image: "/images/ecommerce-prodect.png",
-    },
-
-    {
-      id: "mycima",
-      title: "MyCima",
-      description: "Movie streaming platform.",
-      tech: ["React", "API"],
-      demo: "https://a-basuony.github.io/MyCima/#/home",
-      code: "https://github.com/a-basuony/MyCima",
-      image: "/images/mycima.png",
-    },
-
-    {
-      id: "quiz-app",
-      title: "Quiz Application",
-      description: "Interactive quiz system.",
-      tech: ["JavaScript", "HTML", "CSS"],
-      demo: "https://a-basuony.github.io/Quiz-app/",
-      code: "https://github.com/a-basuony/Quiz-app",
-      image: "/images/quize app.png",
-    },
-
-    {
-      id: "youtube-clone",
-      title: "YouTube Clone",
-      description: "Video streaming platform clone built with React.",
-      tech: ["React", "API", "CSS"],
-      demo: "https://tube-clone.vercel.app",
-      code: "",
-      image: "/images/youtube.webp",
-    },
-
-    {
-      id: "disney-clone",
-      title: "Disney+ Clone",
-      description: "Disney+ streaming platform clone.",
-      tech: ["React", "Firebase", "API"],
-      demo: "https://disneyplus-clone-185f6.web.app/",
-      code: "",
-      image: "/images/Disney.webp",
-    },
-
-    {
-      id: "spotify-clone",
-      title: "Spotify Clone",
-      description: "Music streaming app clone.",
-      tech: ["React", "Spotify API", "CSS"],
-      demo: "https://spotify-clone-ali.vercel.app/",
-      code: "",
-      image: "/images/spotify.webp",
-    },
-
-    {
-      id: "special-design",
-      title: "Special Design",
-      description: "HTML/CSS design template.",
-      tech: ["HTML", "CSS", "JavaScript"],
-      demo: "https://a-basuony.github.io/HTML_CSS__Javascript/",
-      code: "https://github.com/a-basuony/HTML_CSS__Javascript",
-      image: "/images/special desgin.png",
-    },
-
-    {
-      id: "crud-app",
-      title: "CRUD App",
-      description: "CRUD system using vanilla JavaScript.",
-      tech: ["JavaScript", "LocalStorage"],
-      demo: "https://a-basuony.github.io/CRUD-2/",
-      code: "",
-      image: "/images/Crud.png",
-    },
-
-    {
-      id: "kasper-template",
-      title: "Kasper Template",
-      description: "HTML/CSS website template.",
-      tech: ["HTML", "CSS"],
-      demo: "https://a-basuony.github.io/html-and-css-templete-two/",
-      code: "https://github.com/a-basuony/html-and-css-templete-two",
-      image: "/images/kasper.png",
-    },
-
-    {
-      id: "bondi-template",
-      title: "Bondi Template",
-      description: "Creative agency landing page.",
-      tech: ["HTML", "CSS", "Bootstrap"],
-      demo: "https://a-basuony.github.io/Bondi/",
-      code: "https://github.com/a-basuony/Bondi",
-      image: "/images/bondi.png",
-    },
-
-    {
-      id: "awesome-ui",
-      title: "Awesome UI Project",
-      description: "UI/UX portfolio template.",
-      tech: ["HTML", "CSS"],
-      demo: "https://a-basuony.github.io/html-css-template-three/",
-      code: "https://github.com/a-basuony/html-css-template-three",
-      image: "/images/AwesomeProject.png",
-    },
-
-    {
-      id: "awesome-portfolio",
-      title: "Awesome Portfolio",
-      description: "Personal portfolio template.",
-      tech: ["HTML", "CSS"],
-      demo: "https://a-basuony.github.io/HTML-And-CSS-Template-One/",
-      code: "https://github.com/a-basuony/project-portfolio",
-      image: "/images/nice-portfolio.png",
-    },
-
-    {
-      id: "ecommerce-static",
-      title: "Ecommerce Website",
-      description: "Static ecommerce website.",
-      tech: ["HTML", "CSS", "JavaScript"],
-      demo: "https://a-basuony.github.io/ecommerce/",
-      code: "",
-      image: "/images/ecommerce.png",
-    },
-  ];
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const data = await getProjects();
-      setProjects([...MERN_PROJECTS, ...data]);
-      setLoading(false);
-    };
-
-    fetchProjects();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="py-20 flex items-center justify-center min-h-[50vh]">
-        <div className="relative">
-          <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-          <AutoAwesomeIcon className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary animate-pulse" />
-        </div>
-      </div>
-    );
-  }
-  const handleShowMore = () => {
-    setVisibleCount((prev) => prev + 6);
-  };
-
-  const handleShowLess = () => {
-    setVisibleCount(6);
-    // Optional: scroll back to top of projects section or just keep position
-    const projectsSection = document.getElementById("projects");
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section
       id="projects"
-      className="py-20 md:py-32 relative overflow-hidden bg-background transition-colors duration-500"
+      className="relative overflow-hidden bg-background py-20 transition-colors duration-500 md:py-32"
     >
-      {/* Background - Tech Grid & Circuit Lines */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-
-        {/* Moving Circuit Line 1 (Horizontal) */}
         <motion.div
-          animate={{
-            x: ["-100%", "100%"],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 0,
-          }}
-          className="absolute top-[20%] left-0 w-full h-px bg-linear-to-r from-transparent via-primary/50 to-transparent"
+          animate={{ x: ["-100%", "100%"], opacity: [0, 1, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          className="absolute left-0 top-[20%] h-px w-full bg-linear-to-r from-transparent via-primary/50 to-transparent"
         />
-
-        {/* Moving Circuit Line 2 (Horizontal) */}
         <motion.div
-          animate={{
-            x: ["100%", "-100%"],
-            opacity: [0, 1, 0],
-          }}
+          animate={{ x: ["100%", "-100%"], opacity: [0, 1, 0] }}
           transition={{
             duration: 15,
             repeat: Infinity,
             ease: "linear",
             delay: 2,
           }}
-          className="absolute top-[60%] left-0 w-full h-px bg-linear-to-r from-transparent via-accent/50 to-transparent"
-        />
-
-        {/* Moving Circuit Line 3 (Vertical - Left) */}
-        <motion.div
-          animate={{
-            y: ["-100%", "100%"],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 1,
-          }}
-          className="absolute left-[10%] top-0 h-full w-px bg-linear-to-b from-transparent via-primary/30 to-transparent hidden md:block"
-        />
-
-        {/* Moving Circuit Line 4 (Vertical - Right) */}
-        <motion.div
-          animate={{
-            y: ["100%", "-100%"],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 3,
-          }}
-          className="absolute right-[10%] top-0 h-full w-px bg-linear-to-b from-transparent via-accent/30 to-transparent hidden md:block"
+          className="absolute left-0 top-[60%] h-px w-full bg-linear-to-r from-transparent via-accent/50 to-transparent"
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        <motion.div
-          className="text-center mb-16 md:mb-20 space-y-4"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm mb-4">
-            <CodeIcon className="text-accent w-3 h-3 md:w-4 md:h-4" />
-            <span className="text-xs md:text-sm font-semibold text-accent">
-              My Work
+      <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-6">
+        <Reveal className="mb-16 space-y-4 text-center md:mb-20">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-3 py-1.5 backdrop-blur-sm md:px-4 md:py-2">
+            <CodeIcon className="h-3 w-3 text-accent md:h-4 md:w-4" />
+            <span className="text-xs font-semibold text-accent md:text-sm">
+              Product Proof
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-            <span className="bg-linear-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
+          <h2 className="text-4xl font-extrabold tracking-tight md:text-6xl">
+            <span className="animate-gradient bg-linear-to-r from-primary via-accent to-primary bg-clip-text bg-size-[200%_auto] text-transparent">
               Featured Projects
             </span>
           </h2>
 
-          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
-            Explore my latest work and creative solutions
+          <p className="mx-auto max-w-2xl text-base text-muted-foreground md:text-lg">
+            Selected full-stack and frontend products with real workflows,
+            responsive interfaces, API integration, dashboards, authentication,
+            payments, or real-time features where supported by the project.
           </p>
 
-          <div className="w-20 md:w-24 h-1.5 mx-auto bg-linear-to-r from-primary to-accent rounded-full mt-6" />
-        </motion.div>
+          <div className="mx-auto mt-6 h-1.5 w-20 rounded-full bg-linear-to-r from-primary to-accent md:w-24" />
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
           <AnimatePresence>
-            {projects.slice(0, visibleCount).map((project, index) => (
-              <motion.div
+            {featuredProjects.map((project, index) => (
+              <TiltCard
                 key={project.id}
-                layout
-                className="group relative h-full flex flex-col"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: (index % 6) * 0.1, duration: 0.5 }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                className="group relative flex h-full flex-col motion-safe:lg:[perspective:1200px]"
+                delay={(index % 6) * 0.08}
               >
-                <div className="relative flex flex-col h-full bg-card border border-border/50 rounded-3xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-500 group-hover:-translate-y-2">
-                  {/* Image Container */}
-                  <div className="relative h-48 md:h-60 w-full overflow-hidden">
-                    <div className="absolute inset-0 bg-linear-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-
-                    <Image
-                      src={project.image || "/images/placeholder.png"}
-                      alt={project.title}
-                      fill
+                <div className="absolute -inset-px rounded-3xl bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)_/_0.0),rgb(var(--brand-accent-rgb)_/_0.0))] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-60 group-hover:bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)_/_0.22),rgb(var(--brand-accent-rgb)_/_0.16))]" />
+                <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-border/50 bg-card transition-all duration-500 group-hover:-translate-y-2 group-hover:border-primary/30 group-hover:shadow-2xl group-hover:shadow-primary/10">
+                  <div className="p-3">
+                    <ProjectMockup
+                      src={project.image}
+                      alt={`${project.title} screenshot`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      aspect="card"
                     />
-
-                    <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <div className="px-3 py-1 rounded-full bg-accent/90 backdrop-blur-md text-white text-xs font-bold shadow-lg flex items-center gap-1">
-                        <AutoAwesomeIcon sx={{ fontSize: 14 }} />
-                        Featured
-                      </div>
-                    </div>
                   </div>
 
-                  {/* Content Container */}
-                  <div className="flex flex-col grow p-5 md:p-6 space-y-4">
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                        {project.title}
-                      </h3>
-                      <motion.div
-                        className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary"
-                        animate={{ rotate: hoveredIndex === index ? 45 : 0 }}
-                      >
+                  <div className="flex grow flex-col space-y-4 p-5 md:p-6">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-primary">
+                          {project.role}
+                        </p>
+                        <h3 className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary md:text-2xl">
+                          {project.title}
+                        </h3>
+                      </div>
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                         <LaunchIcon sx={{ fontSize: 16 }} />
-                      </motion.div>
+                      </div>
                     </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
-                      {project.description}
-                    </p>
-                    <div className="grow" /> {/* Spacer to push content down */}
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tech.map((tech, i) => (
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.badges.slice(0, 3).map((badge) => (
                         <span
-                          key={i}
-                          className="px-2 md:px-2.5 py-1 rounded-lg bg-secondary/50 text-secondary-foreground text-[10px] md:text-xs font-medium border border-border/50"
+                          key={badge}
+                          className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[11px] font-semibold text-primary"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {project.shortDescription}
+                    </p>
+
+                    <div>
+                      <p className="mb-2 text-xs font-semibold text-foreground">
+                        Strongest features
+                      </p>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        {project.features.slice(0, 3).map((feature) => (
+                          <li key={feature} className="flex gap-2">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="rounded-2xl border border-border/60 bg-secondary/30 p-3 text-xs leading-relaxed text-muted-foreground">
+                      <strong className="text-foreground">Frontend:</strong>{" "}
+                      {project.frontendHighlight}
+                      {project.backendHighlight && (
+                        <>
+                          <br />
+                          <strong className="text-foreground">
+                            Backend:
+                          </strong>{" "}
+                          {project.backendHighlight}
+                        </>
+                      )}
+                    </div>
+
+                    <div className="grow" />
+
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-lg border border-border/50 bg-secondary/50 px-2 py-1 text-[10px] font-medium text-secondary-foreground md:px-2.5 md:text-xs"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
-                    <div className="h-px bg-border/50 my-4" />
-                    <div className="flex gap-3 mt-auto">
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:bg-primary/90 transition-all duration-300"
-                        >
-                          <LaunchIcon sx={{ fontSize: 18 }} />
-                          Live Demo
-                        </a>
+
+                    <div className="my-2 h-px bg-border/50" />
+
+                    <div className="grid gap-3 rounded-2xl border border-border/50 bg-background/60 p-2 sm:grid-cols-2">
+                      {project.demoUrl && (
+                        <MagneticButton className="inline-flex">
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:bg-primary/90 hover:shadow-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          >
+                            <LaunchIcon sx={{ fontSize: 18 }} />
+                            Demo
+                          </a>
+                        </MagneticButton>
                       )}
-                      {project.code && (
-                        <a
-                          href={project.code}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-secondary text-secondary-foreground border border-border hover:bg-secondary/80 text-sm font-semibold transition-all duration-300"
-                        >
-                          <GitHubIcon sx={{ fontSize: 18 }} />
-                          Code
-                        </a>
+                      {project.githubUrl && (
+                        <MagneticButton className="inline-flex">
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:border-primary/40 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          >
+                            <GitHubIcon sx={{ fontSize: 18 }} />
+                            Code
+                          </a>
+                        </MagneticButton>
+                      )}
+                      {project.caseStudy && (
+                        <MagneticButton className="inline-flex sm:col-span-2">
+                          <Link
+                            href={`/projects/${project.slug}`}
+                            className="flex items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-4 py-2.5 text-sm font-semibold text-primary transition-all duration-300 hover:bg-primary/15 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          >
+                            Case Study
+                            <LaunchIcon sx={{ fontSize: 16 }} />
+                          </Link>
+                        </MagneticButton>
                       )}
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </TiltCard>
             ))}
           </AnimatePresence>
         </div>
 
-        {/* Show More / Show Less & GitHub Buttons */}
         <motion.div
-          className="flex flex-col items-center gap-6 mt-16 md:mt-20"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          className="mt-16 rounded-3xl border border-border/60 bg-card/70 p-6 shadow-lg shadow-primary/5 backdrop-blur md:mt-20 md:p-8"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="flex flex-wrap justify-center gap-4">
-            {visibleCount < projects.length && (
-              <motion.button
-                onClick={handleShowMore}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-full bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-all duration-300 flex items-center gap-2 group cursor-pointer hover:shadow-lg hover:shadow-primary/20"
-              >
-                <span>Show More ({projects.length - visibleCount} more)</span>
-                <AutoAwesomeIcon className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-              </motion.button>
-            )}
-
-            {visibleCount > 6 && (
-              <motion.button
-                onClick={handleShowLess}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-full bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/80 transition-all duration-300 flex items-center gap-2 cursor-pointer hover:shadow-lg"
-              >
-                <span>Show Less</span>
-                <motion.span
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  ↑
-                </motion.span>
-              </motion.button>
-            )}
-          </div>
-
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-muted-foreground text-sm">
-              Want to see everything?
-            </p>
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-2 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                <AutoAwesomeIcon sx={{ fontSize: 18 }} />
+                More Projects Archive
+              </p>
+              <h3 className="text-2xl font-bold text-foreground">
+                Earlier frontend, clone, and practice projects
+              </h3>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                These projects are still useful proof of progression, but the
+                homepage now prioritizes stronger full-stack and dashboard work.
+              </p>
+            </div>
             <a
               href="https://github.com/a-basuony"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden px-8 py-3 rounded-full bg-card border border-border hover:border-primary/50 transition-colors duration-300"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/50 hover:text-primary"
             >
-              <span className="relative flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
-                <GitHubIcon />
-                View All Projects on GitHub
-                <LaunchIcon
-                  className="transform group-hover:translate-x-1 transition-transform duration-300"
-                  sx={{ fontSize: 18 }}
-                />
-              </span>
+              <GitHubIcon />
+              View GitHub
             </a>
+          </div>
+
+          <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {archiveProjects.map((project) => (
+              <div
+                key={project.id}
+                className="rounded-2xl border border-border/50 bg-secondary/30 p-4"
+              >
+                <p className="font-semibold text-foreground">
+                  {project.title}
+                </p>
+                <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+                  {project.shortDescription}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {project.tech.slice(0, 3).map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md bg-background px-2 py-1 text-[10px] text-muted-foreground"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>

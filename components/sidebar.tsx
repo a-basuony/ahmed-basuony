@@ -9,6 +9,8 @@ import SunnyIcon from "@mui/icons-material/Sunny";
 import InfoIcon from "@mui/icons-material/Info";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import WorkIcon from "@mui/icons-material/Work";
+import BuildIcon from "@mui/icons-material/Build";
+import TimelineIcon from "@mui/icons-material/Timeline";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import { socialLinks } from "@/lib/social-links";
@@ -31,9 +33,11 @@ export default function Sidebar() {
   };
 
   const navItems = [
-    { label: "About Me", id: "About Me", icon: <InfoIcon /> },
+    { label: "About Me", id: "about", icon: <InfoIcon /> },
     { label: "Skills", id: "skills", icon: <FormatListBulletedIcon /> },
+    { label: "Services", id: "services", icon: <BuildIcon /> },
     { label: "Projects", id: "projects", icon: <WorkIcon /> },
+    { label: "Milestones", id: "milestones", icon: <TimelineIcon /> },
     {
       label: "Certificates",
       id: "certificates",

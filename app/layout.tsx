@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Saira_Stencil_One } from "next/font/google";
 import { ThemeProvider } from "@/lib/theme-provider";
+import PageTransitionProvider from "@/components/page-transition-provider";
 import Script from "next/script";
 import "./globals.css";
 
@@ -51,12 +52,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: "Ahmed Basuony | MERN Stack Developer Saudi Arabia & Egypt",
+    default: "Ahmed Basuony | Full Stack MERN Developer | React, Next.js, Node.js",
     template: "%s | Ahmed Basuony",
   },
 
   description:
-    "Ahmed Basuony (أحمد بسيوني) - Expert MERN Stack Developer specializing in MongoDB, Express.js, React, Node.js, Next.js, and TypeScript. Based in Saudi Arabia and Egypt. Building scalable, high-performance web applications for businesses across the Middle East.",
+    "Ahmed Basuony is a Full Stack MERN Developer building responsive React and Next.js interfaces, Node.js/Express REST APIs, MongoDB-backed apps, dashboards, e-commerce platforms, booking systems, and production-ready web experiences.",
 
   keywords: [
     // Primary Name & Brand
@@ -86,8 +87,8 @@ export const metadata: Metadata = {
     "Next.js Developer",
     "TypeScript Developer",
     "Tailwind CSS Developer",
-    "React 19",
-    "Next.js 15",
+    "React",
+    "Next.js App Router",
 
     // Location-Specific
     "MERN Developer Saudi Arabia",
@@ -150,10 +151,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     alternateLocale: ["ar_SA", "ar_EG"],
     url: SITE_URL,
-    siteName: "Ahmed Basuony - MERN Stack Developer Portfolio",
-    title: "Ahmed Basuony | MERN Stack Developer Saudi Arabia & Egypt",
+    siteName: "Ahmed Basuony - Full Stack MERN Developer Portfolio",
+    title: "Ahmed Basuony | Full Stack MERN Developer",
     description:
-      "Expert MERN Stack Developer (MongoDB, Express, React, Node.js) building modern web applications for Saudi Arabia and Egypt. Specializing in Next.js, TypeScript, and scalable backend solutions.",
+      "Full Stack MERN Developer building responsive React/Next.js interfaces, Node.js REST APIs, MongoDB-backed apps, dashboards, e-commerce platforms, and booking systems.",
     images: [
       {
         url: `${SITE_URL}/og-image.png`,
@@ -169,9 +170,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@ahmedbasuony",
     creator: "@ahmedbasuony",
-    title: "Ahmed Basuony | MERN Stack Developer",
+    title: "Ahmed Basuony | Full Stack MERN Developer",
     description:
-      "Building scalable web applications with the MERN Stack (MongoDB, Express, React, Node.js). Specialized in Next.js and TypeScript.",
+      "Building complete web applications with React, Next.js, TypeScript, Node.js, Express, and MongoDB.",
     images: [`${SITE_URL}/og-image.png`],
   },
 
@@ -480,7 +481,7 @@ export default function RootLayout({
           </a>
 
           <main id="main-content" role="main">
-            {children}
+            <PageTransitionProvider>{children}</PageTransitionProvider>
           </main>
 
           {/* JSON-LD Structured Data */}
@@ -546,3 +547,4 @@ export default function RootLayout({
     </html>
   );
 }
+

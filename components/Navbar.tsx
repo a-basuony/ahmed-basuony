@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import { useTheme } from "@/lib/theme-provider";
-import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import MenuIcon from "@mui/icons-material/Menu";
 import WorkIcon from "@mui/icons-material/Work";
@@ -10,6 +10,16 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import type { ReactNode } from "react";
+
+type NavItem = {
+  icon: ReactNode;
+  label: string;
+  activeColor: string;
+  bgColor: string;
+  id?: string;
+  action?: "theme";
+};
 
 export default function BottomNavbar() {
   const { theme, toggleTheme } = useTheme();
@@ -27,18 +37,18 @@ export default function BottomNavbar() {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const navItems = [
+  const navItems: NavItem[] = [
     {
       icon: <InfoIcon />,
       label: "About",
-      id: "About Me",
+      id: "about",
       activeColor: "text-primary",
       bgColor: "bg-primary/10",
     },
     {
       icon: <MenuIcon />,
-      label: "Skills",
-      id: "skills",
+      label: "Services",
+      id: "services",
       activeColor: "text-accent",
       bgColor: "bg-accent/10",
     },
@@ -72,7 +82,7 @@ export default function BottomNavbar() {
     },
   ];
 
-  const handleClick = (item: any, index: number) => {
+  const handleClick = (item: NavItem, index: number) => {
     setActiveIndex(index);
     if (item.action === "theme") {
       toggleTheme();
@@ -81,12 +91,14 @@ export default function BottomNavbar() {
     }
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <motion.nav
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", damping: 25, stiffness: 200 }}
-      className="sm:hidden fixed bottom-4 left-4 right-4 z-50"
+      className="fixed bottom-4 left-4 right-4 z-50 sm:hidden"
     >
       {/* Main Container */}
       <div className="relative bg-card/80 dark:bg-card/60 backdrop-blur-xl rounded-2xl border border-border shadow-xl shadow-black/5 overflow-hidden">
@@ -168,6 +180,7 @@ export default function BottomNavbar() {
           })}
         </div>
       </div>
-    </motion.nav>
+    </motion.nav>,
+    document.body,
   );
 }
