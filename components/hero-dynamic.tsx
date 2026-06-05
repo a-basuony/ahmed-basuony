@@ -14,9 +14,9 @@ const floatingSkills = [
   { name: "AWS", icon: "AWS", top: "72%", left: "80%", delay: 3.5 },
 ] as const;
 
-const PARTICLE_COUNT = 50;
-const LOW_END_PARTICLE_COUNT = 28;
-const REDUCED_MOTION_PARTICLE_COUNT = 24;
+const PARTICLE_COUNT = 70;
+const LOW_END_PARTICLE_COUNT = 45;
+const REDUCED_MOTION_PARTICLE_COUNT = 30;
 
 export default function HeroDynamic() {
   const [isMounted, setIsMounted] = useState(false);
@@ -57,10 +57,11 @@ export default function HeroDynamic() {
       id: i,
       left: rand() * 100,
       top: rand() * 100,
+      driftX: (rand() - 0.5) * 40,
+      driftY: -20 - rand() * 60,
       scale: 0.5 + rand() * 1.2,
-      driftY: -20 - rand() * 40,
-      duration: rand() * 5 + 5,
-      delay: rand() * 4,
+      duration: 6 + rand() * 6,
+      delay: rand() * 5,
     }));
   }, [particleCount]);
   if (!isMounted) return null;
@@ -75,7 +76,8 @@ export default function HeroDynamic() {
         {particles.map((p) => (
           <motion.div
             key={p.id}
-            className="absolute h-1 w-1 rounded-full bg-current text-primary/55 will-change-transform dark:text-primary/40"
+            className="absolute h-1 w-1 rounded-full bg-current text-primary/55 will-change-transform dark:text-primary/40 shadow-[0_0_8px_currentColor]"
+            // className="absolute h-1.5 w-1.5 rounded-full bg-purple-400/80 shadow-[0_0_12px_rgba(192,132,252,0.9)] will-change-transform dark:bg-purple-500/60"
             style={{
               left: `${p.left}%`,
               top: `${p.top}%`,
@@ -86,8 +88,9 @@ export default function HeroDynamic() {
               shouldReduceMotion
                 ? { opacity: 0.45 }
                 : {
+                    x: [0, p.driftX, 0],
                     y: [0, p.driftY, 0],
-                    opacity: [0, 1, 0],
+                    opacity: [0, 0.95, 0],
                   }
             }
             transition={
@@ -97,7 +100,7 @@ export default function HeroDynamic() {
                     duration: p.duration,
                     delay: p.delay,
                     repeat: Infinity,
-                    ease: "linear",
+                    ease: "easeInOut",
                   }
             }
           />
