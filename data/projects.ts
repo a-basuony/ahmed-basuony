@@ -116,7 +116,11 @@ export const projects: PortfolioProject[] = [
         "Schema cards summarize the visible product data areas without inventing private implementation details.",
         "Exact model files and API docs can be linked after repository verification.",
       ],
-      dataRelationships: ["User -> Order", "Order -> Product", "Cart -> Product"],
+      dataRelationships: [
+        "User -> Order",
+        "Order -> Product",
+        "Cart -> Product",
+      ],
       authAndSecurity: [
         "Authentication is part of the product flow.",
         "Add exact JWT/password/security implementation details after reviewing the backend repository.",
@@ -151,6 +155,200 @@ export const projects: PortfolioProject[] = [
     },
   },
   {
+    id: "c4r-car-rental-platform",
+    slug: "c4r-car-rental-platform",
+    title: "C4R Car Rental Platform",
+    shortDescription:
+      "A freelance car rental platform with vehicle browsing, booking-oriented flows, and a polished customer-facing experience.",
+    description:
+      "Freelance car rental website built for C4R to present available vehicles, guide customers through rental discovery, and support a professional booking-focused business presence.",
+    role: "Freelance full-stack developer",
+    features: ["Vehicle showcase", "Rental discovery", "Business website"],
+    frontendHighlight:
+      "Responsive customer-facing interface focused on vehicle presentation, clear navigation, and conversion-friendly rental flows.",
+    backendHighlight:
+      "Project delivery centered on production deployment, content structure, and business requirements for a private freelance client.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    badges: ["Freelance", "Car Rental", "Production"],
+    demoUrl: "https://www.c4rplatform.com/",
+    image: "/images/C4R-Car-Rental.png",
+    category: "full-stack",
+    featured: true,
+    caseStudy: {
+      overview:
+        "C4R Car Rental Platform is a freelance project built to give a car rental business a professional online presence with clear vehicle discovery and rental-oriented customer journeys.",
+      problem:
+        "A car rental business needs customers to quickly understand available vehicles, trust the brand, and move toward booking without getting lost in a generic website experience.",
+      targetUsers: [
+        "Car rental customers",
+        "Travelers and local renters",
+        "Rental business operators",
+      ],
+      myRole:
+        "I handled the freelance delivery from implementation through production readiness, translating the client's business needs into a responsive web platform.",
+      keyFeatures: [
+        "Vehicle-focused landing and browsing experience",
+        "Clear rental business presentation",
+        "Responsive layout across desktop and mobile",
+        "Production deployment on the client's domain",
+        "Conversion-oriented calls to action for rental inquiries",
+      ],
+      frontendImplementation: [
+        "Built a responsive React/Next.js interface tailored to a rental business workflow.",
+        "Structured the UI around vehicle discovery, service clarity, and quick customer action.",
+        "Used reusable sections and consistent styling to keep the site maintainable.",
+      ],
+      backendImplementation: [
+        "Prepared the project for production delivery and client-facing deployment.",
+        "Kept private freelance implementation details and repository access separate from the public portfolio.",
+      ],
+      databaseDesign: [
+        "The public case study avoids exposing private client implementation details.",
+        "Vehicle and rental content are presented through the deployed business-facing experience.",
+      ],
+      authAndSecurity: [
+        "No public GitHub repository is linked because this was delivered as a private freelance project.",
+        "Production delivery keeps client-owned code and sensitive configuration private.",
+      ],
+      apiOverview: [
+        "Public portfolio links focus on the live product rather than private internal API details.",
+      ],
+      architectureDecisions: [
+        "Used a modern React-based stack to keep the site fast, responsive, and easy to iterate.",
+        "Prioritized direct rental discovery over decorative marketing sections.",
+        "Kept the public portfolio entry centered on the delivered business outcome.",
+      ],
+      challenges: [
+        "Balancing a polished marketing presence with practical rental discovery.",
+        "Delivering a client project without exposing private source code or business internals.",
+      ],
+      solutions: [
+        "Focused the interface on vehicles, trust, and customer action.",
+        "Published the live URL while omitting GitHub because the repository belongs to a freelance client engagement.",
+      ],
+      deploymentNotes: [
+        "Live production website is available at c4rplatform.com.",
+        "Repository is private because this was a freelance project.",
+      ],
+      screenshots: ["/images/C4R-Car-Rental.png"],
+      whatThisProjectProves: [
+        "Freelance client delivery",
+        "Production website deployment",
+        "Business-focused frontend implementation",
+        "Ability to protect private client code while presenting public outcomes",
+      ],
+    },
+  },
+  {
+    id: "shoppy-dashboard",
+    slug: "shoppy-dashboard",
+    title: "Shoppy Dashboard",
+    shortDescription:
+      "A React admin dashboard with analytics-style UI, charts, and management screens.",
+    description:
+      "Frontend dashboard project that demonstrates admin UI composition, charting, and management-oriented interface design.",
+    role: "Frontend developer",
+    features: ["Analytics UI", "Charts", "Admin layout"],
+    frontendHighlight:
+      "Dashboard-focused React UI with reusable layout patterns and data visualization surfaces.",
+    tech: ["React", "Chart.js", "Material UI"],
+    badges: ["Frontend", "Dashboard", "Charts"],
+    demoUrl: "https://shoppy-admin-dashboard.vercel.app/",
+    githubUrl: "https://github.com/a-basuony/Admin_Dashbord_React",
+    image: "/images/shoppy.webp",
+    category: "dashboard",
+    featured: true,
+  },
+  {
+    id: "devevents-nextjs-16",
+    slug: "devevents-nextjs-16",
+    title: "DevEvents Next.js 16 Platform",
+    shortDescription:
+      "A scalable, SEO-optimized Dev Event platform built with Next.js 16 caching and performance features.",
+    description:
+      "Full-stack event platform practice project where users can browse, create, and manage developer events while applying modern Next.js 16 caching, rendering, SEO, and deployment patterns.",
+    role: "Full-stack developer",
+    features: ["Browse events", "Create events", "Manage events"],
+    frontendHighlight:
+      "Modern Next.js interface optimized for event discovery, SEO-friendly pages, and fast navigation.",
+    backendHighlight:
+      "Full-stack Next.js implementation using server-side patterns, data mutations, and caching-focused performance decisions.",
+    tech: ["Next.js 16", "React", "TypeScript", "Tailwind CSS"],
+    badges: ["Full Stack", "Next.js 16", "SEO"],
+    demoUrl: "https://dev-events-next-js-16-six.vercel.app/",
+    githubUrl: "https://github.com/a-basuony/DevEvents_Next.js_16",
+    image: "/images/readme-hero.webp",
+    category: "full-stack",
+    featured: true,
+    caseStudy: {
+      overview:
+        "DevEvents is a full-stack Next.js 16 practice project built to explore scalable, SEO-optimized application development through a real event platform.",
+      problem:
+        "Event platforms need fast public discovery pages, reliable create/manage workflows, and strong SEO so events can be found and browsed easily.",
+      targetUsers: [
+        "Developers looking for events",
+        "Event organizers",
+        "Portfolio reviewers",
+      ],
+      myRole:
+        "I built and deployed the app as a full-stack Next.js practice project, focusing on modern caching, rendering, SEO, and event management workflows.",
+      keyFeatures: [
+        "Browse developer events",
+        "Create new event listings",
+        "Manage existing events",
+        "SEO-optimized event pages",
+        "Production deployment on Vercel",
+      ],
+      frontendImplementation: [
+        "Built a responsive event discovery experience with Next.js and React.",
+        "Structured pages around clear event browsing, details, creation, and management flows.",
+        "Applied SEO-friendly page composition so event content can be indexed and shared.",
+      ],
+      backendImplementation: [
+        "Used Next.js full-stack patterns for event data loading and mutation workflows.",
+        "Practiced Next.js 16 caching and performance behavior across dynamic and static-feeling routes.",
+        "Connected create and manage actions to the app's server-side data flow.",
+      ],
+      databaseDesign: [
+        "Event data is organized around listings, details, and management-oriented fields.",
+        "The case study can be expanded with exact models after the repository schema is documented.",
+      ],
+      authAndSecurity: [
+        "Management flows are structured to support controlled event creation and updates.",
+        "Production configuration details are kept outside the public case study.",
+      ],
+      apiOverview: [
+        "Event browsing, event detail, create, and manage workflows form the main data surface.",
+        "Next.js server-side actions and data loading patterns keep the API surface close to the app experience.",
+      ],
+      architectureDecisions: [
+        "Used Next.js 16 to practice current caching and performance features.",
+        "Built around real product flows instead of isolated UI screens.",
+        "Prioritized SEO because public event pages should be discoverable.",
+      ],
+      challenges: [
+        "Learning how caching choices affect event pages and management workflows.",
+        "Balancing SEO-friendly rendering with dynamic create and update behavior.",
+      ],
+      solutions: [
+        "Separated public discovery pages from management-focused interactions.",
+        "Applied Next.js caching and rendering patterns where they improve speed without hiding fresh event data.",
+      ],
+      deploymentNotes: [
+        "Live demo is deployed on Vercel.",
+        "Source code is available publicly on GitHub.",
+      ],
+      screenshots: ["/images/readme-hero.webp"],
+      whatThisProjectProves: [
+        "Next.js 16 full-stack practice",
+        "Caching and performance awareness",
+        "SEO-focused application structure",
+        "Create and manage workflows for real product data",
+      ],
+    },
+  },
+
+  {
     id: "mern-chat",
     slug: "dardasha-real-time-chat",
     title: "Dardasha Real-Time Chat",
@@ -164,7 +362,14 @@ export const projects: PortfolioProject[] = [
       "Interactive React UI for chat conversations, real-time states, and communication controls.",
     backendHighlight:
       "Socket.io-powered real-time layer with Node/Express and MongoDB-backed user/message data.",
-    tech: ["MongoDB", "Express.js", "React", "Node.js", "Socket.io", "OpenAI API"],
+    tech: [
+      "MongoDB",
+      "Express.js",
+      "React",
+      "Node.js",
+      "Socket.io",
+      "OpenAI API",
+    ],
     badges: ["Full Stack", "Real-time", "AI API"],
     demoUrl: "https://dardasha-real-time-chat-frontend.vercel.app/",
     githubUrl: "https://github.com/a-basuony/Dardasha_real_time_chat_frontend",
@@ -336,48 +541,7 @@ export const projects: PortfolioProject[] = [
       ],
     },
   },
-  {
-    id: "linkedin-clone",
-    slug: "linkedin-clone",
-    title: "LinkedIn Clone",
-    shortDescription:
-      "A MERN social platform with profiles, posts, authentication, and developer-networking features.",
-    description:
-      "Social platform project focused on profiles, feeds, posts, authentication, and community-style interactions.",
-    role: "Full-stack developer",
-    features: ["Profiles", "Post feed", "Authentication"],
-    frontendHighlight:
-      "React UI for social feeds, profile surfaces, and interactive post flows.",
-    backendHighlight:
-      "MERN backend foundation for user and post data with JWT-based authentication where supported.",
-    tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "JWT"],
-    badges: ["Full Stack", "Social", "Auth"],
-    demoUrl: "https://linkedin-clone-two-taupe.vercel.app/",
-    githubUrl: "https://github.com/a-basuony/Linkedin_Clone",
-    image: "/images/linkedin-clone.png",
-    category: "full-stack",
-    featured: true,
-  },
-  {
-    id: "shoppy-dashboard",
-    slug: "shoppy-dashboard",
-    title: "Shoppy Dashboard",
-    shortDescription:
-      "A React admin dashboard with analytics-style UI, charts, and management screens.",
-    description:
-      "Frontend dashboard project that demonstrates admin UI composition, charting, and management-oriented interface design.",
-    role: "Frontend developer",
-    features: ["Analytics UI", "Charts", "Admin layout"],
-    frontendHighlight:
-      "Dashboard-focused React UI with reusable layout patterns and data visualization surfaces.",
-    tech: ["React", "Chart.js", "Material UI"],
-    badges: ["Frontend", "Dashboard", "Charts"],
-    demoUrl: "https://shoppy-admin-dashboard.vercel.app/",
-    githubUrl: "https://github.com/a-basuony/Admin_Dashbord_React",
-    image: "/images/shoppy.webp",
-    category: "dashboard",
-    featured: true,
-  },
+
   {
     id: "happyshop",
     slug: "happyshop",
@@ -461,6 +625,28 @@ export const projects: PortfolioProject[] = [
     featured: false,
   },
   {
+    id: "professional-network-platform",
+    slug: "professional-network-platform",
+    title: "Professional Network Platform",
+    shortDescription:
+      "A MERN social networking app with profiles, post feeds, authentication, and developer-community features.",
+    description:
+      "Full-stack social networking practice project focused on user profiles, feeds, posts, authentication, and community-style interactions.",
+    role: "Full-stack developer",
+    features: ["Profiles", "Post feed", "Authentication"],
+    frontendHighlight:
+      "React UI for profile pages, social feeds, and interactive post workflows.",
+    backendHighlight:
+      "MERN backend foundation for user and post data with JWT-based authentication where supported.",
+    tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "JWT"],
+    badges: ["Full Stack", "Social App", "Practice"],
+    demoUrl: "https://linkedin-clone-two-taupe.vercel.app/",
+    githubUrl: "https://github.com/a-basuony/Linkedin_Clone",
+    image: "/images/linkedin-clone.png",
+    category: "archive",
+    featured: false,
+  },
+  {
     id: "kanban-board",
     slug: "kanban-board",
     title: "Kanban Board",
@@ -537,7 +723,9 @@ export const projects: PortfolioProject[] = [
 
 export const featuredProjects = projects.filter((project) => project.featured);
 export const archiveProjects = projects.filter((project) => !project.featured);
-export const caseStudyProjects = projects.filter((project) => project.caseStudy);
+export const caseStudyProjects = projects.filter(
+  (project) => project.caseStudy,
+);
 
 export function getProjectBySlug(slug: string) {
   return projects.find((project) => project.slug === slug);
