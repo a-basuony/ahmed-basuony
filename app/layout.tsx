@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Saira_Stencil_One } from "next/font/google";
 import { ThemeProvider } from "@/lib/theme-provider";
 import PageTransitionProvider from "@/components/page-transition-provider";
+import SoundController from "@/components/SoundController";
 import Script from "next/script";
 import "./globals.css";
 
@@ -483,6 +484,7 @@ export default function RootLayout({
           <main id="main-content" role="main">
             <PageTransitionProvider>{children}</PageTransitionProvider>
           </main>
+          <SoundController />
 
           {/* JSON-LD Structured Data */}
           <script
