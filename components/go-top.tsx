@@ -40,13 +40,14 @@ export default function GoTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
+          type="button"
           initial={{ opacity: 0, scale: 0.5, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="group fixed bottom-52 right-5 z-40 flex size-11 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)),rgb(var(--brand-accent-rgb)))] text-primary-foreground shadow-xl shadow-primary/15 transition-all duration-300 hover:shadow-primary/30 sm:bottom-40 sm:right-6 sm:size-12"
+          className="group fixed bottom-52 right-5 z-40 flex size-11 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)),rgb(var(--brand-accent-rgb)))] text-primary-foreground shadow-xl shadow-primary/15 outline-none transition-all duration-300 hover:shadow-primary/30 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:bottom-40 sm:right-6 sm:size-12"
           title="Go to Top"
           aria-label="Go to Top"
         >

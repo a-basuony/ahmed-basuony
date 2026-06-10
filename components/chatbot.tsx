@@ -71,7 +71,7 @@ export default function ChatBot() {
         <button
           type="button"
           onClick={() => setIsOpen((current) => !current)}
-          className={`flex size-12 items-center justify-center rounded-full shadow-xl transition-all duration-300 hover:scale-105 ${
+          className={`flex size-12 items-center justify-center rounded-full shadow-xl outline-none transition-all duration-300 hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
             isOpen
               ? "rotate-90 bg-rose-500"
               : "bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)),rgb(var(--brand-accent-rgb)))] hover:shadow-primary/40"
@@ -219,7 +219,7 @@ export default function ChatBot() {
                   onChange={(event) => setInputValue(event.target.value)}
                   placeholder="Type your message..."
                   disabled={isLoading}
-                  className="w-full rounded-lg border-2 border-transparent bg-gray-100 px-3 py-2.5 pr-10 text-sm text-gray-900 shadow-sm transition-all duration-300 placeholder:text-gray-500 focus:border-primary focus:bg-white focus:outline-none disabled:opacity-50 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 dark:focus:bg-gray-800"
+                  className="w-full rounded-lg border-2 border-transparent bg-gray-100 px-3 py-2.5 pr-10 text-sm text-gray-900 shadow-sm transition-all duration-300 placeholder:text-gray-500 focus:border-primary focus:bg-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 dark:focus:bg-gray-800"
                 />
                 <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2">
                   <Sparkles className="size-4 text-gray-400 dark:text-gray-500" />
@@ -229,7 +229,7 @@ export default function ChatBot() {
               <button
                 type="submit"
                 disabled={isLoading || !inputValue.trim()}
-                className="group flex size-10 items-center justify-center rounded-lg bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)),rgb(var(--brand-accent-rgb)))] font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/40 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
+                className="group flex size-10 items-center justify-center rounded-lg bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)),rgb(var(--brand-accent-rgb)))] font-medium text-primary-foreground outline-none transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/40 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 aria-label="Send message"
               >
                 <Send className="size-4 transition-transform group-hover:translate-x-0.5" />

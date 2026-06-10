@@ -91,7 +91,7 @@ export default function ThemeCustomizer() {
                 type="button"
                 onClick={() => setMode("light")}
                 className={cn(
-                  "flex items-center justify-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition",
+                  "flex items-center justify-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium outline-none transition active:bg-card/80 focus-visible:ring-2 focus-visible:ring-ring/40",
                   mode === "light"
                     ? "bg-card text-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground",
@@ -105,7 +105,7 @@ export default function ThemeCustomizer() {
                 type="button"
                 onClick={() => setMode("dark")}
                 className={cn(
-                  "flex items-center justify-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition",
+                  "flex items-center justify-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium outline-none transition active:bg-card/80 focus-visible:ring-2 focus-visible:ring-ring/40",
                   mode === "dark"
                     ? "bg-card text-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground",
@@ -132,7 +132,7 @@ export default function ThemeCustomizer() {
                     type="button"
                     onClick={() => setPalette(key as keyof typeof paletteThemes)}
                     className={cn(
-                      "flex items-center justify-between rounded-lg border px-2.5 py-1.5 text-left text-xs transition",
+                      "flex items-center justify-between rounded-lg border px-2.5 py-1.5 text-left text-xs outline-none transition active:bg-primary/15 focus-visible:ring-2 focus-visible:ring-ring/40",
                       active
                         ? "border-primary bg-primary/10 text-primary"
                         : "border-border bg-card/60 text-foreground hover:border-primary/50",
@@ -162,7 +162,7 @@ export default function ThemeCustomizer() {
               <button
                 type="button"
                 onClick={resetCustomColors}
-                className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+                className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs font-medium text-muted-foreground outline-none transition-colors hover:bg-muted hover:text-foreground active:bg-muted/80 focus-visible:ring-2 focus-visible:ring-ring/40"
               >
                 <RotateCcw className="size-3.5" aria-hidden="true" />
                 Reset
@@ -214,7 +214,7 @@ export default function ThemeCustomizer() {
         type="button"
         onClick={() => setOpen((current) => !current)}
         className={cn(
-          "flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-xl shadow-primary/20 outline-none transition hover:scale-105 hover:bg-primary/90 focus-visible:ring-4 focus-visible:ring-ring/35 sm:size-12",
+          "flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-xl shadow-primary/20 outline-none transition hover:scale-105 hover:bg-primary/90 active:scale-95 focus-visible:ring-4 focus-visible:ring-ring/35 sm:size-12",
           open && "rotate-45",
         )}
         aria-label={open ? "Close theme customizer" : "Open theme customizer"}

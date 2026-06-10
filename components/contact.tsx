@@ -279,7 +279,7 @@ export default function Contact() {
                         key={intent}
                         type="button"
                         onClick={() => handleIntentChange(intent)}
-                        className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-primary/30 ${
+                        className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all active:bg-primary/15 focus:outline-none focus:ring-2 focus:ring-primary/30 ${
                           isActive
                             ? "border-primary bg-primary text-primary-foreground shadow-lg shadow-primary/20"
                             : "border-border bg-background text-muted-foreground hover:border-primary/40 hover:text-primary"
@@ -369,12 +369,18 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={
+                    result ||
                     !formData.name ||
                     !isValidEmail ||
                     !formData.subject ||
                     !formData.message
                   }
-                  className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-accent-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/30 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+                  aria-busy={result}
+                  className={`flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-accent-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/30 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:hover:translate-y-0 ${
+                    result
+                      ? "cursor-wait disabled:cursor-wait"
+                      : "cursor-pointer disabled:cursor-not-allowed"
+                  }`}
                 >
                   {result ? (
                     <>

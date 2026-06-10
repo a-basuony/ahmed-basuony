@@ -121,9 +121,10 @@ export default function BottomNavbar() {
             return (
               <motion.button
                 key={index}
+                type="button"
                 onClick={() => handleClick(item, index)}
                 aria-label={item.label}
-                className="relative flex flex-col items-center justify-center gap-1 p-1 flex-1 min-w-0 min-h-[44px]"
+                className="relative flex min-h-[44px] min-w-0 flex-1 flex-col items-center justify-center gap-1 p-1 outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 whileTap={{ scale: 0.92 }}
                 transition={{ duration: 0.15 }}
               >

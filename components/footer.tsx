@@ -74,7 +74,6 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-3 text-center text-sm text-muted-foreground md:flex-row md:text-left">
           <p>Copyright {currentYear} Ahmed Basuony. All rights reserved.</p>
-          <p>Built with Next.js, TypeScript, and Tailwind CSS.</p>
         </div>
       </div>
     </footer>

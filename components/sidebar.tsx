@@ -54,8 +54,9 @@ export default function Sidebar() {
     >
       {/* Toggle Button */}
       <button
+        type="button"
         onClick={() => setIsExpanded(!isExpanded)}
-        className="absolute cursor-pointer top-4 right-4 p-2 rounded-lg hover:bg-sidebar-primary/20 transition-colors z-10 min-h-[44px] min-w-[44px] flex items-center justify-center"
+        className="absolute right-4 top-4 z-10 flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-lg p-2 transition-colors hover:bg-sidebar-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring"
         aria-label={isExpanded ? "Collapse menu" : "Expand menu"}
       >
         {isExpanded ? <CloseIcon /> : <MenuIcon />}
@@ -104,20 +105,13 @@ export default function Sidebar() {
 
       {/* Theme Toggle */}
       {isExpanded ? (
-        <div
-          className="mb-6 flex items-center justify-center gap-3 p-3 rounded-lg bg-sidebar-primary/10 border border-sidebar-primary/20 animate-fade-in cursor-pointer hover:bg-sidebar-primary/20 transition-colors"
+        <button
+          type="button"
+          className="mb-6 flex w-full animate-fade-in cursor-pointer items-center justify-center gap-3 rounded-lg border border-sidebar-primary/20 bg-sidebar-primary/10 p-3 transition-colors hover:bg-sidebar-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring"
           onClick={toggleTheme}
-          role="button"
-          tabIndex={0}
           aria-label={
             currentTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
           }
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              toggleTheme();
-            }
-          }}
           style={{ animationDelay: "0.1s" }}
         >
           <div
@@ -148,16 +142,20 @@ export default function Sidebar() {
           <span className="text-xs font-medium text-sidebar-foreground/80">
             {currentTheme === "dark" ? "Dark" : "Light"} Mode
           </span>
-        </div>
+        </button>
       ) : (
         <button
+          type="button"
           onClick={toggleTheme}
-          className={`mb-6 p-2.5 cursor-pointer transition-all duration-300 flex items-center justify-center rounded-lg ${
+          className={`mb-6 flex cursor-pointer items-center justify-center rounded-lg p-2.5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring ${
             currentTheme === "dark"
               ? "hover:bg-green-500/20 text-green-400"
               : "hover:bg-yellow-500/20 text-yellow-600"
           }`}
           title={
+            currentTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
+          }
+          aria-label={
             currentTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
           }
         >
@@ -178,8 +176,9 @@ export default function Sidebar() {
           {navItems.map((item, index) => (
             <button
               key={item.id}
+              type="button"
               onClick={() => scrollToSection(item.id)}
-              className={`cursor-pointer w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden animate-fade-in min-h-[44px] flex items-center ${
+              className={`group relative flex min-h-[44px] w-full animate-fade-in cursor-pointer items-center overflow-hidden rounded-lg px-4 py-3 text-left text-sm font-medium text-sidebar-foreground transition-all duration-300 hover:bg-sidebar-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring dark:text-white ${
                 !isExpanded && "flex justify-center px-2"
               }`}
               style={{ animationDelay: `${0.2 + index * 0.1}s` }}

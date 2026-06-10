@@ -138,7 +138,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className="cursor-grab overflow-hidden active:cursor-grabbing"
       data-slot="carousel-content"
     >
       <div

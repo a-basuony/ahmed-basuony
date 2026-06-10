@@ -4,7 +4,7 @@ import { Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const SOUND_STORAGE_KEY = "portfolio-sound-enabled";
-const AMBIENT_VOLUME = 0.2;
+const AMBIENT_VOLUME = 0.22;
 
 export default function SoundController() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -94,7 +94,7 @@ export default function SoundController() {
       aria-label={isPlaying ? "Turn sound off" : "Turn sound on"}
       aria-pressed={isPlaying}
       onClick={toggleSound}
-      className={`fixed right-6 top-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border bg-background/70 text-primary shadow-lg backdrop-blur-md transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background md:right-8 md:top-8 ${
+      className={`fixed right-6 top-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border bg-background/70 text-primary shadow-lg backdrop-blur-md transition hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background md:right-8 md:top-8 ${
         wasPreviouslyEnabled && !isPlaying
           ? "border-primary/50"
           : "border-primary/30"
