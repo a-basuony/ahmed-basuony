@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useState, type CSSProperties } from "react";
 
 const floatingSkills = [
   { name: "Node.js", icon: "JS", top: "18%", left: "50%", delay: 1 },
@@ -15,17 +15,72 @@ const floatingSkills = [
 ] as const;
 
 const PARTICLE_COUNT = 70;
-const LOW_END_PARTICLE_COUNT = 45;
-const REDUCED_MOTION_PARTICLE_COUNT = 30;
+
+type ParticleStyle = CSSProperties & {
+  "--particle-drift-x": string;
+  "--particle-drift-y": string;
+  "--particle-scale": number;
+  "--particle-duration": string;
+  "--particle-delay": string;
+};
+
+function createSeededRandom(initialSeed: number) {
+  let seed = initialSeed;
+
+  return () => {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let value = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    value =
+      (value + Math.imul(value ^ (value >>> 7), 61 | value)) ^ value;
+    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const particleRandom = createSeededRandom(42);
+const particles = Array.from({ length: PARTICLE_COUNT }, (_, id) => ({
+  id,
+  left: particleRandom() * 100,
+  top: particleRandom() * 100,
+  driftX: (particleRandom() - 0.5) * 40,
+  driftY: -20 - particleRandom() * 60,
+  scale: 0.5 + particleRandom() * 1.2,
+  duration: 6 + particleRandom() * 6,
+  delay: particleRandom() * 5,
+}));
+
+const ParticleField = memo(function ParticleField() {
+  return (
+    <div className="absolute inset-0" data-particle-count={PARTICLE_COUNT}>
+      {particles.map((particle) => {
+        const style: ParticleStyle = {
+          left: `${particle.left}%`,
+          top: `${particle.top}%`,
+          "--particle-drift-x": `${particle.driftX}px`,
+          "--particle-drift-y": `${particle.driftY}px`,
+          "--particle-scale": particle.scale,
+          "--particle-duration": `${particle.duration}s`,
+          "--particle-delay": `${particle.delay}s`,
+        };
+
+        return (
+          <span
+            key={particle.id}
+            className="hero-particle absolute h-1 w-1 rounded-full bg-current text-primary/55 shadow-[0_0_8px_currentColor] dark:text-primary/40"
+            data-hero-particle
+            style={style}
+          />
+        );
+      })}
+    </div>
+  );
+});
 
 export default function HeroDynamic() {
-  const [isMounted, setIsMounted] = useState(false);
   const [isLowEndDevice, setIsLowEndDevice] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    setIsMounted(true);
-
     setIsLowEndDevice(
       typeof navigator !== "undefined" &&
         Boolean(navigator.hardwareConcurrency) &&
@@ -33,79 +88,13 @@ export default function HeroDynamic() {
     );
   }, []);
 
-  const particleCount = shouldReduceMotion
-    ? REDUCED_MOTION_PARTICLE_COUNT
-    : isLowEndDevice
-      ? LOW_END_PARTICLE_COUNT
-      : PARTICLE_COUNT;
-
-  // Deterministic seeded PRNG to avoid server/client hydration mismatch
-  const particles = useMemo(() => {
-    const seed = (s: number) => {
-      return () => {
-        s |= 0;
-        s = (s + 0x6d2b79f5) | 0;
-        let t = Math.imul(s ^ (s >>> 15), 1 | s);
-        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-      };
-    };
-
-    const rand = seed(42);
-
-    return Array.from({ length: particleCount }, (_, i) => ({
-      id: i,
-      left: rand() * 100,
-      top: rand() * 100,
-      driftX: (rand() - 0.5) * 40,
-      driftY: -20 - rand() * 60,
-      scale: 0.5 + rand() * 1.2,
-      duration: 6 + rand() * 6,
-      delay: rand() * 5,
-    }));
-  }, [particleCount]);
-  if (!isMounted) return null;
-
   return (
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
     >
       {/* Animated Background — particles */}
-      <div className="absolute inset-0">
-        {particles.map((p) => (
-          <motion.div
-            key={p.id}
-            className="absolute h-1 w-1 rounded-full bg-current text-primary/55 will-change-transform dark:text-primary/40 shadow-[0_0_8px_currentColor]"
-            // className="absolute h-1.5 w-1.5 rounded-full bg-purple-400/80 shadow-[0_0_12px_rgba(192,132,252,0.9)] will-change-transform dark:bg-purple-500/60"
-            style={{
-              left: `${p.left}%`,
-              top: `${p.top}%`,
-              scale: p.scale,
-            }}
-            initial={{ opacity: shouldReduceMotion ? 0.45 : 0 }}
-            animate={
-              shouldReduceMotion
-                ? { opacity: 0.45 }
-                : {
-                    x: [0, p.driftX, 0],
-                    y: [0, p.driftY, 0],
-                    opacity: [0, 0.95, 0],
-                  }
-            }
-            transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : {
-                    duration: p.duration,
-                    delay: p.delay,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }
-            }
-          />
-        ))}
-      </div>
+      <ParticleField />
 
       {!isLowEndDevice && (
         <div className="pointer-events-none absolute inset-0 z-20">

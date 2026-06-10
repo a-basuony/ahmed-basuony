@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Download } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -12,6 +12,19 @@ const HeroDynamic = dynamic(() => import("@/components/hero-dynamic"), {
 });
 
 export default function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const heroItem = {
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const heroTransition = (delay: number) => ({
+    duration: shouldReduceMotion ? 0 : 0.45,
+    delay: shouldReduceMotion ? 0 : delay,
+    ease: "easeOut" as const,
+  });
+
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
     if (contactSection) {
@@ -57,14 +70,26 @@ export default function HeroSection() {
       <div className="container z-10 mx-auto px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="space-y-8">
-            <div className="mt-4 inline-block animate-fade-in-up">
+            <motion.div
+              className="mt-4 inline-block"
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate="visible"
+              variants={heroItem}
+              transition={heroTransition(0)}
+            >
               <span className="rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary backdrop-blur-sm">
                 Available for freelance and remote roles
               </span>
-            </div>
+            </motion.div>
 
             <div className="space-y-4">
-              <h1 className="text-6xl font-bold leading-tight text-foreground lg:text-7xl">
+              <motion.h1
+                className="text-6xl font-bold leading-tight text-foreground lg:text-7xl"
+                initial={shouldReduceMotion ? false : "hidden"}
+                animate="visible"
+                variants={heroItem}
+                transition={heroTransition(0.07)}
+              >
                 Hi, I&apos;m{" "}
                 <span
                   className="animate-gradient bg-[linear-gradient(90deg,rgb(var(--brand-primary-rgb)),rgb(var(--brand-accent-rgb)),rgb(var(--brand-primary-rgb)))] bg-clip-text bg-size-[200%_auto] text-transparent"
@@ -72,14 +97,26 @@ export default function HeroSection() {
                 >
                   Ahmed Basuony
                 </span>
-              </h1>
+              </motion.h1>
 
-              <h2 className="text-3xl font-semibold text-primary lg:text-4xl">
+              <motion.h2
+                className="text-3xl font-semibold text-primary lg:text-4xl"
+                initial={shouldReduceMotion ? false : "hidden"}
+                animate="visible"
+                variants={heroItem}
+                transition={heroTransition(0.14)}
+              >
                 Full-Stack MERN Developer
-              </h2>
+              </motion.h2>
             </div>
 
-            <p className="max-w-xl animate-fade-in-up text-lg leading-relaxed text-muted-foreground delay-100">
+            <motion.p
+              className="max-w-xl text-lg leading-relaxed text-muted-foreground"
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate="visible"
+              variants={heroItem}
+              transition={heroTransition(0.21)}
+            >
               Full-Stack MERN Developer specializing in{" "}
               <strong className="text-foreground">MongoDB</strong>,{" "}
               <strong className="text-foreground">Express.js</strong>,{" "}
@@ -87,9 +124,15 @@ export default function HeroSection() {
               <strong className="text-foreground">Node.js</strong>. I build
               complete web applications, RESTful APIs, dashboards, and
               production-ready user experiences.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap gap-4 animate-fade-in-up delay-200">
+            <motion.div
+              className="flex flex-wrap gap-4"
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate="visible"
+              variants={heroItem}
+              transition={heroTransition(0.28)}
+            >
               <MagneticButton className="inline-flex">
                 <a
                   target="_blank"
@@ -121,9 +164,15 @@ export default function HeroSection() {
                   Let&apos;s Talk
                 </button>
               </MagneticButton>
-            </div>
+            </motion.div>
 
-            <div className="mb-6 flex flex-wrap justify-center gap-3 animate-fade-in-up delay-300 sm:mb-0 sm:justify-start md:gap-4">
+            <motion.div
+              className="mb-6 flex flex-wrap justify-center gap-3 sm:mb-0 sm:justify-start md:gap-4"
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate="visible"
+              variants={heroItem}
+              transition={heroTransition(0.35)}
+            >
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.name}
@@ -131,8 +180,8 @@ export default function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  whileHover={{ scale: 1.15, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+                  whileTap={shouldReduceMotion ? undefined : { y: 0 }}
                   className="group flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/80 backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-primary/10 sm:h-12 sm:w-12"
                 >
                   <span
@@ -142,19 +191,19 @@ export default function HeroSection() {
                   </span>
                 </motion.a>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
 
       <motion.div
         className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 sm:block"
-        initial={{ opacity: 0, y: -20 }}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.5 }}
+        transition={heroTransition(0.45)}
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
           className="flex h-10 w-6 justify-center rounded-full border-2 border-muted-foreground/60 pt-2"
         >

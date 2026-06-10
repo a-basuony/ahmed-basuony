@@ -7,6 +7,7 @@ import Hero from "@/components/hero";
 import Sidebar from "@/components/sidebar";
 import BottomNavbar from "@/components/Navbar";
 import Footer from "@/components/footer";
+import Reveal from "@/components/reveal";
 
 // Below-the-fold: dynamic imports for code-splitting
 const About = dynamic(() => import("@/components/about"));
@@ -35,17 +36,39 @@ export default function HomeContent() {
         <div className="w-full">
           <BottomNavbar />
           <Hero />
-          <FullStackArchitectureVisual />
-          <About />
-          <Skills />
-          <Services />
-          <Projects />
-          <GitHubProof />
-          <Milestones />
-          <Certificates />
-          <Testimonials />
-          <Contact />
-          <Footer />
+          <Reveal>
+            <FullStackArchitectureVisual />
+          </Reveal>
+          <Reveal>
+            <About />
+          </Reveal>
+          <Reveal>
+            <Skills />
+          </Reveal>
+          <Reveal>
+            <Services />
+          </Reveal>
+          <Reveal>
+            <Projects />
+          </Reveal>
+          <Reveal>
+            <GitHubProof />
+          </Reveal>
+          <Reveal>
+            <Milestones />
+          </Reveal>
+          <Reveal>
+            <Certificates />
+          </Reveal>
+          <Reveal>
+            <Testimonials />
+          </Reveal>
+          <Reveal>
+            <Contact />
+          </Reveal>
+          <Reveal>
+            <Footer />
+          </Reveal>
         </div>
         <GoTop />
         <ThemeCustomizer />

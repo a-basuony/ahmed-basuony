@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useMemo, useRef } from "react";
 import {
   Code as HtmlIcon,
@@ -28,6 +28,8 @@ import {
 } from "@mui/icons-material";
 
 export default function Skills() {
+  const shouldReduceMotion = useReducedMotion();
+
   const skillCategories = useMemo(
     () => [
       {
@@ -278,11 +280,15 @@ export default function Skills() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[20px_20px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] dark:bg-[radial-gradient(#ffffff33_1px,transparent_1px)]" />
 
         <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            opacity: [0.3, 0.5, 0.3],
-          }}
+          animate={
+            shouldReduceMotion
+              ? { x: 0, y: 0, opacity: 0.3 }
+              : {
+                  x: [0, 100, 0],
+                  y: [0, -50, 0],
+                  opacity: [0.3, 0.5, 0.3],
+                }
+          }
           transition={{
             duration: 8,
             repeat: Infinity,
@@ -292,11 +298,15 @@ export default function Skills() {
         />
 
         <motion.div
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-            opacity: [0.3, 0.5, 0.3],
-          }}
+          animate={
+            shouldReduceMotion
+              ? { x: 0, y: 0, opacity: 0.3 }
+              : {
+                  x: [0, -100, 0],
+                  y: [0, 50, 0],
+                  opacity: [0.3, 0.5, 0.3],
+                }
+          }
           transition={{
             duration: 10,
             repeat: Infinity,

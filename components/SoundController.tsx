@@ -4,7 +4,7 @@ import { Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const SOUND_STORAGE_KEY = "portfolio-sound-enabled";
-const AMBIENT_VOLUME = 0.22;
+const AMBIENT_VOLUME = 0.2;
 
 export default function SoundController() {
   const audioRef = useRef<HTMLAudioElement | null>(null);

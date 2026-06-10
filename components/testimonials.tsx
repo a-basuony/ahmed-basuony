@@ -183,16 +183,19 @@ export default function Testimonials() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgb(var(--brand-primary-rgb)_/_0.10),transparent_30%),radial-gradient(circle_at_82%_78%,rgb(var(--brand-accent-rgb)_/_0.10),transparent_28%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgb(var(--brand-primary-rgb)_/_0.045)_1px,transparent_1px),linear-gradient(90deg,rgb(var(--brand-primary-rgb)_/_0.045)_1px,transparent_1px)] bg-size-[72px_72px] opacity-45" />
 
-      {!shouldReduceMotion &&
-        particles.map((particle) => (
+      {particles.map((particle) => (
           <motion.div
             key={particle.id}
             className="pointer-events-none absolute h-1.5 w-1.5 rounded-full bg-primary/25"
             style={{ left: particle.left, top: particle.top }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.15, 0.45, 0.15],
-            }}
+            animate={
+              shouldReduceMotion
+                ? { y: 0, opacity: 0.25 }
+                : {
+                    y: [0, -20, 0],
+                    opacity: [0.15, 0.45, 0.15],
+                  }
+            }
             transition={{
               duration: particle.duration,
               delay: particle.delay,

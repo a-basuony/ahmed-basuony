@@ -20,16 +20,12 @@ export default function Reveal({
   return (
     <motion.div
       className={className}
-      initial={
-        shouldReduceMotion ? false : { opacity: 0, y: 22, filter: "blur(6px)" }
-      }
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
       whileInView={
-        shouldReduceMotion
-          ? undefined
-          : { opacity: 1, y: 0, filter: "blur(0px)" }
+        shouldReduceMotion ? undefined : { opacity: 1, y: 0 }
       }
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.45, delay, ease: "easeOut" }}
       {...props}
     >
       {children}

@@ -4,7 +4,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import CodeIcon from "@mui/icons-material/Code";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { archiveProjects, featuredProjects } from "@/data/projects";
 import MagneticButton from "@/components/magnetic-button";
@@ -13,6 +13,8 @@ import Reveal from "@/components/reveal";
 import TiltCard from "@/components/tilt-card";
 
 export default function Projects() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="projects"
@@ -21,12 +23,20 @@ export default function Projects() {
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
         <motion.div
-          animate={{ x: ["-100%", "100%"], opacity: [0, 1, 0] }}
+          animate={
+            shouldReduceMotion
+              ? { x: "0%", opacity: 0.25 }
+              : { x: ["-100%", "100%"], opacity: [0, 1, 0] }
+          }
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
           className="absolute left-0 top-[20%] h-px w-full bg-linear-to-r from-transparent via-primary/50 to-transparent"
         />
         <motion.div
-          animate={{ x: ["100%", "-100%"], opacity: [0, 1, 0] }}
+          animate={
+            shouldReduceMotion
+              ? { x: "0%", opacity: 0.25 }
+              : { x: ["100%", "-100%"], opacity: [0, 1, 0] }
+          }
           transition={{
             duration: 15,
             repeat: Infinity,
@@ -63,14 +73,13 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
           <AnimatePresence>
-            {featuredProjects.map((project, index) => (
+            {featuredProjects.map((project) => (
               <TiltCard
                 key={project.id}
-                className="group relative flex h-full flex-col motion-safe:lg:[perspective:1200px]"
-                delay={(index % 6) * 0.08}
+                className="group relative flex h-full flex-col"
               >
-                <div className="absolute -inset-px rounded-3xl bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)_/_0.0),rgb(var(--brand-accent-rgb)_/_0.0))] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-60 group-hover:bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)_/_0.22),rgb(var(--brand-accent-rgb)_/_0.16))]" />
-                <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-border/50 bg-card transition-all duration-500 group-hover:-translate-y-2 group-hover:border-primary/30 group-hover:shadow-2xl group-hover:shadow-primary/10">
+                <div className="absolute -inset-px rounded-3xl bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)_/_0.0),rgb(var(--brand-accent-rgb)_/_0.0))] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-30 group-hover:bg-[linear-gradient(135deg,rgb(var(--brand-primary-rgb)_/_0.22),rgb(var(--brand-accent-rgb)_/_0.16))]" />
+                <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-border/50 bg-card transition-all duration-300 group-hover:border-primary/30 group-hover:shadow-xl group-hover:shadow-primary/10">
                   <div className="p-3">
                     <ProjectMockup
                       src={project.image}

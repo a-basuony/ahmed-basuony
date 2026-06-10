@@ -312,6 +312,45 @@ textarea {
   }
 }
 
+.hero-particle {
+  opacity: 0.45;
+  transform: translate3d(0, 0, 0) scale(var(--particle-scale, 1));
+}
+
+@keyframes hero-particle-drift {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(var(--particle-scale, 1));
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: translate3d(
+        var(--particle-drift-x, 0),
+        var(--particle-drift-y, -40px),
+        0
+      )
+      scale(var(--particle-scale, 1));
+  }
+}
+
+@supports (animation-name: hero-particle-drift) {
+  .hero-particle {
+    animation: hero-particle-drift var(--particle-duration, 8s) ease-in-out
+      var(--particle-delay, 0s) infinite;
+    will-change: transform, opacity;
+  }
+}
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .hero-particle {
+    animation: none;
+    opacity: 0.45;
+    will-change: auto;
+  }
+}
+
 .glow-effect {
   animation: glow 3s ease-in-out infinite;
   box-shadow:
