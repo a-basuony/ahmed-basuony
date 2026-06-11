@@ -1,51 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Gauge,
-  LayoutDashboard,
-  LockKeyhole,
-  MonitorSmartphone,
-  ServerCog,
-  ShoppingCart,
-} from "lucide-react";
+import { Braces, LayoutDashboard, ServerCog } from "lucide-react";
 
 const services = [
   {
-    title: "Frontend Development",
+    title: "Full-Stack Web Apps",
     description:
-      "Responsive React and Next.js interfaces, reusable components, forms, dashboards, and polished UI implementation.",
-    icon: MonitorSmartphone,
-  },
-  {
-    title: "Full Stack Web Apps",
-    description:
-      "MERN applications that connect frontend workflows with REST APIs, authentication, MongoDB data, and deployment.",
+      "Complete React and Next.js applications connected to practical Node.js and MongoDB backends.",
     icon: ServerCog,
   },
   {
     title: "Admin Dashboards",
     description:
-      "Management interfaces for CRUD workflows, analytics views, filtering, search, and operational screens.",
+      "Clear management interfaces for CRUD workflows, analytics, filtering, and operational tasks.",
     icon: LayoutDashboard,
   },
   {
-    title: "E-Commerce Platforms",
+    title: "API Development",
     description:
-      "Catalogs, carts, checkout-oriented flows, product management, and payment integrations where project scope supports it.",
-    icon: ShoppingCart,
-  },
-  {
-    title: "Authentication Systems",
-    description:
-      "Login/register flows, protected UI states, JWT-based patterns, and role-aware UX where supported by the backend.",
-    icon: LockKeyhole,
-  },
-  {
-    title: "Performance and Deployment",
-    description:
-      "Image optimization, lazy loading, SEO metadata, Vercel deployment, environment configuration, and production checks.",
-    icon: Gauge,
+      "REST APIs with authentication, validation, database integration, and maintainable backend structure.",
+    icon: Braces,
   },
 ];
 

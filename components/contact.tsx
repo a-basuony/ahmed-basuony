@@ -82,18 +82,35 @@ export default function Contact() {
     }
 
     setResult(true);
-    const formDataObj = new FormData(event.currentTarget);
-    formDataObj.append("access_key", `${process.env.NEXT_PUBLIC_WEBFORMS}`);
-    formDataObj.append("project_type", formData.projectType);
+    setSubmitStatus("idle");
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formDataObj,
-    });
+    try {
+      const accessKey = process.env.NEXT_PUBLIC_WEBFORMS;
 
-    const data = await response.json();
-    if (data.success) {
-      setResult(false);
+      if (!accessKey) {
+        throw new Error("Web3Forms access key is not configured.");
+      }
+
+      const formDataObj = new FormData(event.currentTarget);
+      formDataObj.append("access_key", accessKey);
+      formDataObj.append("project_type", formData.projectType);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataObj,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      const data = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+      };
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Web3Forms rejected the submission.");
+      }
+
       setFormData({
         name: "",
         email: "",
@@ -105,10 +122,12 @@ export default function Contact() {
       setIsValidEmail(false);
       setSubmitStatus("success");
       setTimeout(() => setSubmitStatus("idle"), 3000);
-    } else {
-      setResult(false);
+    } catch (error) {
+      console.error("Contact form submission failed:", error);
       setSubmitStatus("error");
       setTimeout(() => setSubmitStatus("idle"), 3000);
+    } finally {
+      setResult(false);
     }
   };
 
@@ -295,10 +314,14 @@ export default function Contact() {
 
               {/* Name Input */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label
+                  htmlFor="contact-name"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
                   Name
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   value={formData.name}
@@ -311,10 +334,14 @@ export default function Contact() {
 
               {/* Email Input */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label
+                  htmlFor="contact-email"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
                   Email
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   value={formData.email}
@@ -334,10 +361,14 @@ export default function Contact() {
 
               {/* Subject Input */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label
+                  htmlFor="contact-subject"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
                   Subject
                 </label>
                 <input
+                  id="contact-subject"
                   type="text"
                   name="subject"
                   value={formData.subject}
@@ -350,10 +381,14 @@ export default function Contact() {
 
               {/* Message Textarea */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label
+                  htmlFor="contact-message"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
                   Message
                 </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
@@ -368,13 +403,7 @@ export default function Contact() {
               <MagneticButton className="block w-full">
                 <button
                   type="submit"
-                  disabled={
-                    result ||
-                    !formData.name ||
-                    !isValidEmail ||
-                    !formData.subject ||
-                    !formData.message
-                  }
+                  disabled={result}
                   aria-busy={result}
                   className={`flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-accent-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/30 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:hover:translate-y-0 ${
                     result
@@ -402,6 +431,7 @@ export default function Contact() {
               {submitStatus === "success" && (
                 <div
                   role="status"
+                  aria-live="polite"
                   className="rounded-lg border border-green-500/40 bg-green-500/10 p-3 text-center text-sm text-green-600 animate-fade-in dark:text-green-300"
                 >
                   Message sent successfully! I'll get back to you soon.

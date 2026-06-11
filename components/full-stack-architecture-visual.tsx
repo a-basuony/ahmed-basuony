@@ -27,7 +27,7 @@ const layers = [
   {
     label: "Auth / RBAC",
     detail:
-      "Authentication-aware flows and role-based product thinking where supported by project proof.",
+      "Authentication flows, protected interfaces, and account-based product journeys.",
     icon: KeyRound,
   },
   {

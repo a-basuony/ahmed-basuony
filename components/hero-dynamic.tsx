@@ -7,11 +7,11 @@ const floatingSkills = [
   { name: "Node.js", icon: "JS", top: "18%", left: "50%", delay: 1 },
   { name: "Next.js", icon: "N", top: "35%", left: "47%", delay: 2 },
   { name: "MongoDB", icon: "DB", top: "52%", left: "50%", delay: 3 },
-  { name: "Git", icon: "Git", top: "72%", left: "46%", delay: 4 },
+  { name: "Git", icon: "Git", top: "72%", left: "50%", delay: 4 },
   { name: "React", icon: "Rx", top: "12%", left: "80%", delay: 0 },
-  { name: "TypeScript", icon: "TS", top: "32%", left: "78%", delay: 1.5 },
-  { name: "Docker", icon: "D", top: "55%", left: "82%", delay: 2.5 },
-  { name: "AWS", icon: "AWS", top: "72%", left: "80%", delay: 3.5 },
+  { name: "TypeScript", icon: "TS", top: "32%", left: "86%", delay: 1.5 },
+  { name: "Docker", icon: "D", top: "55%", left: "86%", delay: 2.5 },
+  { name: "AWS", icon: "AWS", top: "72%", left: "83%", delay: 3.5 },
 ] as const;
 
 const PARTICLE_COUNT = 70;
@@ -31,8 +31,7 @@ function createSeededRandom(initialSeed: number) {
     seed |= 0;
     seed = (seed + 0x6d2b79f5) | 0;
     let value = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    value =
-      (value + Math.imul(value ^ (value >>> 7), 61 | value)) ^ value;
+    value = (value + Math.imul(value ^ (value >>> 7), 61 | value)) ^ value;
     return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
   };
 }

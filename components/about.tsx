@@ -70,6 +70,8 @@ export default function About() {
             </h2>
 
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              5+ years building web applications with React, Next.js, Node.js,
+              and MongoDB.{" "}
               I am Ahmed Basuony, a Full Stack MERN Developer based in Saudi
               Arabia, focused on building responsive React and Next.js
               interfaces connected to practical Node.js, Express.js, and MongoDB

@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Download } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { socialLinks } from "@/lib/social-links";
 import MagneticButton from "@/components/magnetic-button";
 
 const HeroDynamic = dynamic(() => import("@/components/hero-dynamic"), {
@@ -164,33 +163,6 @@ export default function HeroSection() {
                   Let&apos;s Talk
                 </button>
               </MagneticButton>
-            </motion.div>
-
-            <motion.div
-              className="mb-6 flex flex-wrap justify-center gap-3 sm:mb-0 sm:justify-start md:gap-4"
-              initial={shouldReduceMotion ? false : "hidden"}
-              animate="visible"
-              variants={heroItem}
-              transition={heroTransition(0.35)}
-            >
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-                  whileTap={shouldReduceMotion ? undefined : { y: 0 }}
-                  className="group flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/80 backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-primary/10 sm:h-12 sm:w-12"
-                >
-                  <span
-                    className={`text-lg transition-transform group-hover:scale-110 sm:text-xl ${social.textClass}`}
-                  >
-                    {social.icon}
-                  </span>
-                </motion.a>
-              ))}
             </motion.div>
           </div>
         </div>

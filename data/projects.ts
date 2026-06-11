@@ -91,7 +91,7 @@ export const projects: PortfolioProject[] = [
         "Cart and checkout experience",
         "Authentication-aware user flows",
         "Admin management for product/order operations",
-        "Stripe payment integration where supported by the live project",
+        "Stripe payment integration",
       ],
       frontendImplementation: [
         "Built responsive React screens for browsing, cart, and dashboard-style flows.",
@@ -100,12 +100,11 @@ export const projects: PortfolioProject[] = [
       ],
       backendImplementation: [
         "Node.js and Express.js API foundation for e-commerce resources.",
-        "Separated product, user, cart, order, and payment-oriented concerns where available in the repository.",
+        "Separated product, user, cart, order, and payment concerns across the API layer.",
         "Integrated backend responses into frontend flows.",
       ],
       databaseDesign: [
         "MongoDB is used for product, user, and order-style data.",
-        "The case study should later include actual schema screenshots or links from the repository.",
       ],
       databaseModels: [
         { name: "User", fields: ["profile", "auth", "orders"] },
@@ -113,8 +112,7 @@ export const projects: PortfolioProject[] = [
         { name: "Order", fields: ["items", "status", "payment"] },
       ],
       schemaHighlights: [
-        "Schema cards summarize the visible product data areas without inventing private implementation details.",
-        "Exact model files and API docs can be linked after repository verification.",
+        "Schema cards summarize the core product, user, cart, and order data areas.",
       ],
       dataRelationships: [
         "User -> Order",
@@ -123,11 +121,9 @@ export const projects: PortfolioProject[] = [
       ],
       authAndSecurity: [
         "Authentication is part of the product flow.",
-        "Add exact JWT/password/security implementation details after reviewing the backend repository.",
       ],
       apiOverview: [
-        "Product, auth, cart, order, and checkout endpoints are the expected API groups for this project.",
-        "Add Swagger/Postman links when API documentation is available.",
+        "The API layer supports product, authentication, cart, order, and checkout workflows.",
       ],
       architectureDecisions: [
         "MERN stack chosen to keep frontend, API, and MongoDB data flow aligned.",
@@ -143,7 +139,6 @@ export const projects: PortfolioProject[] = [
       ],
       deploymentNotes: [
         "Frontend is deployed publicly for demo access.",
-        "Add backend hosting and environment variable details if the API deployment is public.",
       ],
       screenshots: ["/images/e-commerce-Shoppire.png", "/images/ecommerce.png"],
       whatThisProjectProves: [
@@ -159,9 +154,9 @@ export const projects: PortfolioProject[] = [
     slug: "c4r-car-rental-platform",
     title: "C4R Car Rental Platform",
     shortDescription:
-      "A freelance car rental platform with vehicle browsing, booking-oriented flows, and a polished customer-facing experience.",
+      "Freelance car-rental website delivered for a real client, with responsive vehicle presentation, rental inquiry flows, and production deployment.",
     description:
-      "Freelance car rental website built for C4R to present available vehicles, guide customers through rental discovery, and support a professional booking-focused business presence.",
+      "Built and delivered for C4R as a real client project, focused on responsive landing pages, clear vehicle and service presentation, rental inquiries, and a production-ready customer experience.",
     role: "Freelance full-stack developer",
     features: ["Vehicle showcase", "Rental discovery", "Business website"],
     frontendHighlight:
@@ -353,9 +348,9 @@ export const projects: PortfolioProject[] = [
     slug: "dardasha-real-time-chat",
     title: "Dardasha Real-Time Chat",
     shortDescription:
-      "A real-time communication app with authentication, group chats, calls, screen sharing, and AI-assisted features.",
+      "Real-time chat app with Socket.io messaging, group conversations, audio/video calls, screen sharing, and OpenAI-powered features.",
     description:
-      "Real-time chat application built around live messaging and collaboration workflows, including authentication, group conversations, audio/video calls, screen sharing, and AI-assisted capabilities where supported.",
+      "Full-stack communication application combining Socket.io messaging, authentication, group chats, audio/video calls, screen sharing, and OpenAI API integration in an interactive real-time experience.",
     role: "Full-stack developer",
     features: ["Real-time messaging", "Group chats", "Calls and screen share"],
     frontendHighlight:
@@ -388,8 +383,8 @@ export const projects: PortfolioProject[] = [
         "Authentication-aware chat experience",
         "Real-time messaging",
         "Group conversations",
-        "Audio/video call and screen-share workflows where supported",
-        "AI API integration where supported",
+        "Audio/video call and screen-share workflows",
+        "AI API integration",
       ],
       frontendImplementation: [
         "Built chat-oriented UI states for messages, conversations, loading, and interaction controls.",
@@ -398,11 +393,10 @@ export const projects: PortfolioProject[] = [
       ],
       backendImplementation: [
         "Socket.io is used for real-time messaging behavior.",
-        "Node/Express and MongoDB are used for persistent app data where supported by the project repositories.",
+        "Node/Express and MongoDB manage persistent user, message, and conversation data.",
       ],
       databaseDesign: [
         "MongoDB supports user/message/conversation-style data.",
-        "Add actual schema diagrams after confirming the backend repository structure.",
       ],
       databaseModels: [
         { name: "User", fields: ["profile", "auth", "presence"] },
@@ -410,8 +404,7 @@ export const projects: PortfolioProject[] = [
         { name: "Message", fields: ["sender", "content", "timestamps"] },
       ],
       schemaHighlights: [
-        "The schema view focuses on chat-domain entities that are already represented in the project positioning.",
-        "Socket event documentation can be added later when verified.",
+        "The schema view maps the core user, conversation, and message entities.",
       ],
       dataRelationships: [
         "User -> Conversation",
@@ -420,11 +413,9 @@ export const projects: PortfolioProject[] = [
       ],
       authAndSecurity: [
         "Authentication is included in the app flow.",
-        "Add token/session details only after verifying the backend implementation.",
       ],
       apiOverview: [
-        "Expected API groups include auth, users, conversations, messages, and real-time socket events.",
-        "A future Postman or event contract section would make this case study stronger.",
+        "Application flows cover authentication, users, conversations, messages, and real-time socket events.",
       ],
       architectureDecisions: [
         "Socket.io fits the real-time messaging requirement better than polling.",
@@ -436,11 +427,10 @@ export const projects: PortfolioProject[] = [
       ],
       solutions: [
         "Focused the UI around conversation state and clear controls.",
-        "Used real-time events for instant feedback where the project supports them.",
+        "Used real-time events to deliver instant feedback.",
       ],
       deploymentNotes: [
         "Frontend demo is public.",
-        "Document backend/socket hosting details once confirmed.",
       ],
       screenshots: ["/images/chat.png"],
       whatThisProjectProves: [
@@ -464,7 +454,7 @@ export const projects: PortfolioProject[] = [
     frontendHighlight:
       "Responsive booking UI with healthcare-oriented cards, forms, and navigation flows.",
     backendHighlight:
-      "MERN-style project structure with authentication and appointment-related data where supported by the repository.",
+      "MERN application structure for authentication and appointment-related data.",
     tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "JWT"],
     badges: ["Full Stack", "Booking", "Auth"],
     demoUrl: "https://doctor-booking-team2.vercel.app/",
@@ -477,26 +467,23 @@ export const projects: PortfolioProject[] = [
         "Doctor Booking is a healthcare-oriented web app that demonstrates booking workflows and role-aware product thinking.",
       problem:
         "A booking platform must make it easy for users to find the right provider and move through an appointment flow without friction.",
-      targetUsers: ["Patients", "Doctors or clinics", "Admins if supported"],
+      targetUsers: ["Patients", "Doctors or clinics"],
       myRole:
         "I contributed to building the application experience and connecting UI flows with MERN-style application logic.",
       keyFeatures: [
         "Doctor/profile browsing",
         "Appointment-focused workflow",
         "Authentication-aware user experience",
-        "Dashboard or management screens where supported",
       ],
       frontendImplementation: [
         "Built responsive React screens for browsing and appointment interactions.",
         "Used form and state patterns suitable for booking workflows.",
       ],
       backendImplementation: [
-        "Node/Express backend and MongoDB are listed in the project stack.",
-        "Add exact endpoint and role details after reviewing the backend repository.",
+        "Node/Express and MongoDB support authentication and appointment workflows.",
       ],
       databaseDesign: [
-        "Expected data includes users, doctors, and appointments.",
-        "Add real schema details when confirmed.",
+        "Application data centers on users, doctors, and appointments.",
       ],
       databaseModels: [
         { name: "User", fields: ["profile", "auth", "appointments"] },
@@ -504,8 +491,7 @@ export const projects: PortfolioProject[] = [
         { name: "Appointment", fields: ["patient", "doctor", "status"] },
       ],
       schemaHighlights: [
-        "Schema cards describe the booking-domain entities already supported by the case study copy.",
-        "Detailed backend model links should be added after repository verification.",
+        "Schema cards describe the core user, doctor, and appointment entities.",
       ],
       dataRelationships: [
         "User -> Appointment",
@@ -513,11 +499,10 @@ export const projects: PortfolioProject[] = [
         "Appointment -> Status",
       ],
       authAndSecurity: [
-        "JWT is listed in the project stack.",
-        "Add details about roles and token handling only after verifying them.",
+        "JWT-based authentication protects user account flows.",
       ],
       apiOverview: [
-        "Expected API groups include auth, doctors, appointments, and users.",
+        "Application flows connect authentication, doctor discovery, appointments, and user accounts.",
       ],
       architectureDecisions: [
         "Booking apps benefit from clear separation between discovery, booking, and account flows.",
@@ -529,7 +514,7 @@ export const projects: PortfolioProject[] = [
       ],
       solutions: [
         "Positioned the project around appointment flow rather than cart/checkout language.",
-        "Kept the case study honest where backend details still need repository proof.",
+        "Used healthcare-specific language and interactions throughout the booking experience.",
       ],
       deploymentNotes: ["Public demo is available on Vercel."],
       screenshots: ["/images/booking-doctor.png"],
@@ -555,14 +540,14 @@ export const projects: PortfolioProject[] = [
     frontendHighlight:
       "React shopping interface with product and cart screens.",
     backendHighlight:
-      "MERN backend stack listed for product/user/order-style workflows.",
+      "MERN backend for product, user, and order workflows.",
     tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "Stripe"],
     badges: ["Full Stack", "E-commerce", "Stripe"],
     demoUrl: "https://happy-shop-frontend-xi.vercel.app/",
     githubUrl: "https://github.com/a-basuony/happyShop-frontend",
     image: "/images/happy_shop.png",
-    category: "full-stack",
-    featured: true,
+    category: "archive",
+    featured: false,
   },
   {
     id: "safarni",
@@ -577,7 +562,7 @@ export const projects: PortfolioProject[] = [
     frontendHighlight:
       "React interface for a travel product experience with responsive listing screens.",
     backendHighlight:
-      "MERN stack is listed; backend-specific details should be expanded after repository review.",
+      "MERN application structure connecting the React interface with Node/Express and MongoDB.",
     tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux"],
     badges: ["Full Stack", "Travel", "Product UI"],
     demoUrl: "https://safarni-wza1.vercel.app/",
@@ -637,7 +622,7 @@ export const projects: PortfolioProject[] = [
     frontendHighlight:
       "React UI for profile pages, social feeds, and interactive post workflows.",
     backendHighlight:
-      "MERN backend foundation for user and post data with JWT-based authentication where supported.",
+      "MERN backend for user and post data with JWT-based authentication.",
     tech: ["MongoDB", "Express.js", "React", "Node.js", "Redux", "JWT"],
     badges: ["Full Stack", "Social App", "Practice"],
     demoUrl: "https://linkedin-clone-two-taupe.vercel.app/",

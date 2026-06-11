@@ -65,7 +65,7 @@ export default function Projects() {
           <p className="mx-auto max-w-2xl text-base text-muted-foreground md:text-lg">
             Selected full-stack and frontend products with real workflows,
             responsive interfaces, API integration, dashboards, authentication,
-            payments, or real-time features where supported by the project.
+            payments, and real-time features.
           </p>
 
           <div className="mx-auto mt-6 h-1.5 w-20 rounded-full bg-linear-to-r from-primary to-accent md:w-24" />

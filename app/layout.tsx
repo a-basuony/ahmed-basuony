@@ -53,7 +53,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: "Ahmed Basuony | Full Stack MERN Developer | React, Next.js, Node.js",
+    default:
+      "Ahmed Basuony | Full Stack MERN Developer | React, Next.js, Node.js",
     template: "%s | Ahmed Basuony",
   },
 
@@ -242,7 +243,7 @@ export default function RootLayout({
     url: SITE_URL,
     image: {
       "@type": "ImageObject",
-      url: `${SITE_URL}/ahmed.png`,
+      url: `${SITE_URL}/images/ahmed.png`,
       width: 800,
       height: 800,
       caption: "Ahmed Basuony - MERN Stack Developer",
@@ -549,4 +550,3 @@ export default function RootLayout({
     </html>
   );
 }
-

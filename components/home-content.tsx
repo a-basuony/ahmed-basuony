@@ -17,7 +17,6 @@ const FullStackArchitectureVisual = dynamic(
 const Skills = dynamic(() => import("@/components/skills"));
 const Services = dynamic(() => import("@/components/services"));
 const Projects = dynamic(() => import("@/components/projects"));
-const GitHubProof = dynamic(() => import("@/components/github-proof"));
 const Milestones = dynamic(() => import("@/components/milestones"));
 const Certificates = dynamic(() => import("@/components/certificates"));
 const Testimonials = dynamic(() => import("@/components/testimonials"));
@@ -37,22 +36,19 @@ export default function HomeContent() {
           <BottomNavbar />
           <Hero />
           <Reveal>
-            <FullStackArchitectureVisual />
+            <About />
           </Reveal>
           <Reveal>
-            <About />
+            <FullStackArchitectureVisual />
           </Reveal>
           <Reveal>
             <Skills />
           </Reveal>
           <Reveal>
-            <Services />
-          </Reveal>
-          <Reveal>
             <Projects />
           </Reveal>
           <Reveal>
-            <GitHubProof />
+            <Services />
           </Reveal>
           <Reveal>
             <Milestones />

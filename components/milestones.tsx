@@ -103,8 +103,8 @@ export default function Milestones() {
               </div>
             </div>
             <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
-              These are learning priorities, not claimed expertise. They are
-              included to show direction without overstating proof.
+              Focused learning priorities guiding my next stage of full-stack
+              development.
             </p>
             <div className="grid gap-3">
               {learning.map((item) => (
